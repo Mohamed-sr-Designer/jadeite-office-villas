@@ -61,11 +61,8 @@
   --glass-brd:rgba(7,42,33,.12);
   --glass-brd-2:rgba(7,42,33,.22);
   --hair:rgba(7,42,33,.1);
-  --page-base:#f1ece1;
-  --page-bg:
-    radial-gradient(1100px 800px at 80% -10%, rgba(11,107,83,.10), transparent 60%),
-    radial-gradient(900px 900px at 0% 100%, rgba(11,107,83,.09), transparent 60%),
-    linear-gradient(180deg,#f4efe5,#ece6d8 60%,#e5ddcc);
+  --page-base:#efe9dd;
+  --page-bg:#efe9dd;
   --btn-fill:#07392e; --btn-ink:#f4efe4; --btn-fill-h:#0a4d3d; --btn-glow:rgba(7,57,46,.32);
   --footer-bg:rgba(7,42,33,.05);
   --input-bg:rgba(7,42,33,.045); --input-bg-focus:rgba(7,42,33,.075);
@@ -87,6 +84,9 @@ header, .hero, .m-menu, #loader{
   --font-display:"Cormorant Garamond",serif;
   --font-body:"Jost",sans-serif;
 }
+/* light mode: no decorative glows */
+[data-theme="light"] .form-shell::before,
+[data-theme="light"] .modal-card::before{display:none}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -170,8 +170,9 @@ section{position:relative;padding-block:clamp(3.25rem,6.5vh,5.5rem)}
 .lang-ar .loader-tag{letter-spacing:.2em}
 
 /* ============ NAV ============ */
-header{position:fixed;top:0;inset-inline:0;z-index:90;transition:.5s var(--ease)}
-header.scrolled{background:rgba(0,30,24,.72);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--hair)}
+header{position:fixed;top:0;inset-inline:0;z-index:90;transition:.5s var(--ease);
+  background:linear-gradient(180deg,rgba(0,22,17,.6),rgba(0,22,17,0))}
+header.scrolled{background:rgba(0,28,22,.9);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--hair)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:1.1rem}
 header.scrolled .nav{padding-block:.7rem}
 .nav-logo img{height:42px;width:auto;transition:.4s var(--ease)}
@@ -207,19 +208,30 @@ header.scrolled .nav-logo img{height:36px}
 .m-menu .btn{margin-top:1rem}
 
 /* ============ HERO ============ */
-.hero{min-height:100svh;display:flex;align-items:flex-end;padding-bottom:clamp(3rem,7vh,6rem);overflow:hidden}
+.hero{min-height:84svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:7.5rem 0 clamp(3rem,6vh,4.5rem);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;animation:kb 22s ease-out forwards}
 @keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-   linear-gradient(180deg,rgba(0,26,20,.55) 0%,rgba(0,26,20,.05) 22%,rgba(0,30,24,.15) 50%,rgba(0,26,20,.78) 86%,var(--page-base) 100%),
-   radial-gradient(80% 70% at 50% 120%,rgba(0,68,56,.5),transparent)}
-.hero-grid{display:grid;grid-template-columns:1.7fr .8fr;gap:clamp(2rem,4vw,3.5rem);align-items:end;width:100%}
-.hero-copy{max-width:none}
-.hero h1{margin:1.2rem 0 1.4rem;text-wrap:balance}
-.hero .lead{margin-bottom:2.1rem;max-width:46ch}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+   linear-gradient(180deg,rgba(0,22,17,.7) 0%,rgba(0,22,17,.52) 42%,rgba(0,22,17,.74) 82%,var(--page-base) 100%),
+   radial-gradient(78% 72% at 50% 44%,rgba(0,32,25,.72),rgba(0,32,25,.12) 82%)}
+.hero-inner{display:flex;flex-direction:column;align-items:center;width:100%}
+.hero .eyebrow{justify-content:center}
+.hero h1{margin:1.3rem 0 1.3rem;text-wrap:balance}
+.hero .lead{margin:0 auto 2rem;max-width:54ch}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+/* centered spec bar */
+.hero-specbar{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  gap:.4rem clamp(1.2rem,3vw,2.6rem);margin-top:2.6rem;padding:1rem clamp(1.2rem,3vw,2rem);
+  border:1px solid var(--glass-brd);border-radius:16px;background:var(--glass);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.hsb{display:flex;flex-direction:column;gap:.25rem;position:relative;padding-inline:clamp(.4rem,1.5vw,1rem)}
+.hsb+.hsb::before{content:"";position:absolute;inset-inline-start:0;top:50%;transform:translateY(-50%);width:1px;height:28px;background:var(--hair)}
+.hsb-k{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver-2)}
+.lang-ar .hsb-k{letter-spacing:0;font-size:.8rem;text-transform:none}
+.hsb-v{font-size:1rem;font-weight:500;color:var(--bone)}
 .scroll-cue{position:absolute;inset-inline-start:50%;bottom:1.6rem;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.66rem;letter-spacing:.3em;
   text-transform:uppercase;color:var(--silver-2);opacity:.8}
@@ -260,32 +272,26 @@ header.scrolled .nav-logo img{height:36px}
 .cm p{font-size:.94rem;color:var(--silver-2);font-weight:300}
 .lang-ar .cm p{font-weight:400}
 
-/* ============ FEATURES (editorial list) ============ */
-.feat2{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
-.feat2-head{position:sticky;top:104px}
-.feat2-head .h2{margin-top:1.2rem}
-.feat2-sub{margin-top:1.3rem;max-width:34ch;color:var(--silver-2);font-weight:300}
+/* ============ FEATURES (2-col grid, icon beside text) ============ */
+.feat2-sub{margin-top:1rem;max-width:52ch;color:var(--silver-2);font-weight:300}
 .lang-ar .feat2-sub{font-weight:400}
-.feat2-list{display:flex;flex-direction:column;border-top:1px solid var(--hair)}
-.feat-item{display:grid;grid-template-columns:2.8rem 1fr;gap:1.3rem;align-items:start;
-  padding:1.5rem .2rem;border-bottom:1px solid var(--hair);
-  transition:padding .4s var(--ease),background .4s var(--ease)}
-.feat-num{font-family:var(--font-display);font-size:1.5rem;color:var(--jade-soft);opacity:.5;line-height:1.15;transition:opacity .4s var(--ease)}
-.feat-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.45rem}
-.feat-ic{flex:0 0 auto;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
-  color:var(--jade-soft);background:var(--glass);border:1px solid var(--glass-brd);transition:.4s var(--ease)}
-.feat-ic svg{width:19px;height:19px}
-.feat-main h3{font-size:1.2rem;line-height:1.3}
-.feat-main p{color:var(--silver-2);font-size:.96rem;font-weight:300;max-width:54ch;margin-top:.1rem}
-.lang-ar .feat-main p{font-weight:400}
-.feat-item:hover{padding-inline-start:1rem;background:linear-gradient(90deg,var(--glass),transparent)}
-.feat-item:hover .feat-num{opacity:1}
-.feat-item:hover .feat-ic{background:var(--glass-2);border-color:var(--jade-soft);transform:translateY(-2px)}
+.feat-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:clamp(1.8rem,3.4vw,2.6rem)}
+.feat-cell{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;
+  padding:1.6rem;border:1px solid var(--glass-brd);border-radius:16px;background:var(--glass);
+  transition:.45s var(--ease)}
+.feat-cell:hover{background:var(--glass-2);border-color:var(--jade-soft);transform:translateY(-3px)}
+.feat-cell .ic{flex:0 0 auto;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+  color:var(--jade-soft);background:linear-gradient(150deg,rgba(47,141,116,.28),rgba(255,255,255,.03));
+  border:1px solid var(--glass-brd)}
+.feat-cell .ic svg{width:23px;height:23px}
+.feat-cell h3{font-size:1.18rem;margin-bottom:.4rem;line-height:1.3}
+.feat-cell p{color:var(--silver-2);font-size:.95rem;font-weight:300}
+.lang-ar .feat-cell p{font-weight:400}
 
 /* ============ EXPERIENCE (split) ============ */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .split-media{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;
-  border:1px solid var(--glass-brd);box-shadow:0 40px 80px -50px #000}
+  border:1px solid var(--glass-brd);box-shadow:0 18px 48px -36px rgba(0,0,0,.4)}
 .split-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
 .split-media:hover img{transform:scale(1.05)}
 .split-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(0,38,30,.35))}
@@ -313,21 +319,24 @@ header.scrolled .nav-logo img{height:36px}
 .lang-ar .stat .lab{letter-spacing:0;font-size:.95rem;text-transform:none}
 .stat+.stat{border-inline-start:1px solid var(--hair)}
 
-/* ============ GALLERY ============ */
-.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:1rem}
-.gal{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--glass-brd)}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.gal:hover img{transform:scale(1.07)}
-.gal::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,26,20,.45),transparent 60%)}
-.g-tall{grid-row:span 2}
-.g-wide{grid-column:span 2}
+/* ============ GALLERY (auto-loop slider) ============ */
+.gal-slider{position:relative;overflow:hidden;direction:ltr;margin-top:clamp(.5rem,2vw,1.5rem);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.gal-track{display:flex;gap:1rem;width:max-content;animation:galscroll 60s linear infinite}
+.gal-slider:hover .gal-track{animation-play-state:paused}
+.gal-slide{flex:0 0 auto;width:clamp(240px,26vw,330px);height:clamp(300px,42vh,420px);
+  position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--glass-brd)}
+.gal-slide img{width:100%;height:100%;object-fit:cover}
+.gal-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,26,20,.4),transparent 55%)}
+@keyframes galscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ============ CONTACT / FORM ============ */
 .contact{position:relative}
 .form-shell{
   background:var(--glass);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);
   border:1px solid var(--glass-brd);border-radius:28px;padding:clamp(2rem,5vw,4rem);
-  box-shadow:0 50px 120px -60px #000;position:relative;overflow:hidden}
+  box-shadow:0 16px 44px -32px rgba(0,0,0,.35);position:relative;overflow:hidden}
 .form-shell::before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;
   background:radial-gradient(circle,rgba(47,141,116,.4),transparent 70%);top:-160px;inset-inline-end:-120px;filter:blur(20px)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem 1.5rem;position:relative}
@@ -383,7 +392,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 .modal-card{position:relative;width:min(640px,100%);max-height:90vh;overflow:hidden auto;
   background:var(--modal-bg);
   border:1px solid var(--glass-brd);border-radius:24px;padding:clamp(1.8rem,4vw,3rem);
-  box-shadow:0 50px 130px -50px rgba(0,0,0,.6);transform:translateY(26px) scale(.97);opacity:0;
+  box-shadow:0 24px 70px -42px rgba(0,0,0,.5);transform:translateY(26px) scale(.97);opacity:0;
   transition:transform .5s var(--ease),opacity .5s var(--ease)}
 .modal.open .modal-card{transform:none;opacity:1}
 .modal-card::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;
@@ -418,34 +427,30 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 @media(max-width:980px){
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
-  .hero-grid{grid-template-columns:1fr;gap:2rem}
-  .hero{align-items:center;padding-top:7rem}
-  .spec{max-width:480px}
-  .feat2{grid-template-columns:1fr;gap:1.5rem}
-  .feat2-head{position:static}
+  .feat-grid2{grid-template-columns:1fr}
   .split{grid-template-columns:1fr;gap:2.5rem}
   .community .split-inner{order:2}
   .concept-motif{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem 1rem}
   .stat:nth-child(2){border-inline-start:0}
   .stat:nth-child(3){border-inline-start:0}
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
 }
 @media(max-width:560px){
-  .feat-item{grid-template-columns:auto 1fr;gap:1rem}
+  .hero-specbar{gap:.4rem 1rem}
+  .hsb{flex:1 0 40%;text-align:center;align-items:center}
+  .hsb+.hsb::before{display:none}
   .stats-grid{grid-template-columns:1fr}
   .stat+.stat{border-inline-start:0;border-top:1px solid var(--hair);padding-top:2.5rem}
   .form-grid{grid-template-columns:1fr}
-  .gal-grid{grid-template-columns:1fr;grid-auto-rows:220px}
-  .g-wide{grid-column:auto}
   .foot-grid{grid-template-columns:1fr}
   .foot-bottom{flex-direction:column;text-align:center}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important}
   .reveal{opacity:1;transform:none;transition:none}
+  .gal-slider{overflow-x:auto}
 }
 </style>
 </head>
@@ -500,40 +505,21 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
   <div class="hero-bg"><img src="assets/hero.jpg" alt="" /></div>
-  <div class="wrap" style="width:100%">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow" data-ar="المملكة العربية السعودية · الخبر" data-en="Kingdom of Saudi Arabia · Al Khobar">المملكة العربية السعودية · الخبر</span>
-        <h1 class="display" data-ar="فللٌ مكتبية<br>تُعيد تعريف مكان العمل" data-en="Office villas that<br>redefine the workplace">فللٌ مكتبية<br>تُعيد تعريف مكان العمل</h1>
-        <p class="lead" data-ar="بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة." data-en="Instead of a floor in a tower, give your company a standalone villa with an identity of its own — within an integrated community made for the few.">بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة.</p>
-        <div class="hero-ctas">
-          <a href="#contact" data-open-modal class="btn btn-primary" data-ar="احجز جولة خاصة" data-en="Book a private tour">احجز جولة خاصة</a>
-          <a href="#concept" class="btn btn-ghost" data-ar="اكتشف المشروع" data-en="Discover the project">اكتشف المشروع <span class="arr">→</span></a>
-        </div>
-      </div>
-
-      <aside class="spec reveal">
-        <h4 data-ar="لمحة عن المشروع" data-en="Project at a glance">لمحة عن المشروع</h4>
-        <div class="spec-row">
-          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-10a7 7 0 0114 0c0 4.8-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
-          <div><div class="k" data-ar="الموقع" data-en="Location">الموقع</div><div class="v" data-ar="الخبر · الحزام الذهبي" data-en="Al Khobar · Golden Belt">الخبر · الحزام الذهبي</div></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V8l5-3 5 3v13M9 12h2M9 16h2M14 12h1M14 16h1"/></svg></div>
-          <div><div class="k" data-ar="عدد الفلل" data-en="Villas">عدد الفلل</div><div class="v" data-ar="١١ فيلا مكتبية مستقلة" data-en="11 independent villas">١١ فيلا مكتبية مستقلة</div></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
-          <div><div class="k" data-ar="المساحة الإجمالية" data-en="Total area">المساحة الإجمالية</div><div class="v" data-ar="١٩٬٠٠٠ م²" data-en="19,000 m²">١٩٬٠٠٠ م²</div></div>
-        </div>
-        <div class="spec-row">
-          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4M4 7v13h16V7M4 12h16M4 16h16"/></svg></div>
-          <div><div class="k" data-ar="الطوابق" data-en="Floors">الطوابق</div><div class="v" data-ar="٣ طوابق لكل فيلا" data-en="3 floors per villa">٣ طوابق لكل فيلا</div></div>
-        </div>
-      </aside>
+  <div class="wrap hero-inner">
+    <span class="eyebrow" data-ar="المملكة العربية السعودية · الخبر" data-en="Kingdom of Saudi Arabia · Al Khobar">المملكة العربية السعودية · الخبر</span>
+    <h1 class="display" data-ar="فللٌ مكتبية<br>تُعيد تعريف مكان العمل" data-en="Office villas that<br>redefine the workplace">فللٌ مكتبية<br>تُعيد تعريف مكان العمل</h1>
+    <p class="lead" data-ar="بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة." data-en="Instead of a floor in a tower, give your company a standalone villa with an identity of its own — within an integrated community made for the few.">بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة.</p>
+    <div class="hero-ctas">
+      <a href="#contact" data-open-modal class="btn btn-primary" data-ar="احجز جولة خاصة" data-en="Book a private tour">احجز جولة خاصة</a>
+      <a href="#concept" class="btn btn-ghost" data-ar="اكتشف المشروع" data-en="Discover the project">اكتشف المشروع <span class="arr">→</span></a>
+    </div>
+    <div class="hero-specbar reveal">
+      <div class="hsb"><span class="hsb-k" data-ar="الموقع" data-en="Location">الموقع</span><span class="hsb-v" data-ar="الخبر · الحزام الذهبي" data-en="Al Khobar · Golden Belt">الخبر · الحزام الذهبي</span></div>
+      <div class="hsb"><span class="hsb-k" data-ar="عدد الفلل" data-en="Villas">عدد الفلل</span><span class="hsb-v" data-ar="١١ فيلا مستقلة" data-en="11 villas">١١ فيلا مستقلة</span></div>
+      <div class="hsb"><span class="hsb-k" data-ar="المساحة" data-en="Total area">المساحة</span><span class="hsb-v" data-ar="١٩٬٠٠٠ م²" data-en="19,000 m²">١٩٬٠٠٠ م²</span></div>
+      <div class="hsb"><span class="hsb-k" data-ar="الطوابق" data-en="Floors">الطوابق</span><span class="hsb-v" data-ar="٣ لكل فيلا" data-en="3 per villa">٣ لكل فيلا</span></div>
     </div>
   </div>
-  <div class="scroll-cue"><span data-ar="انزل للأسفل" data-en="Scroll">انزل للأسفل</span><i></i></div>
 </section>
 
 <!-- ============ CONCEPT ============ -->
@@ -585,70 +571,52 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 
 <!-- ============ FEATURES ============ -->
 <section id="features">
-  <div class="wrap feat2">
-    <div class="feat2-head reveal">
+  <div class="wrap">
+    <div class="sec-head reveal">
       <span class="eyebrow" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</span>
       <h2 class="h2" data-ar="كل تفصيلة صُمّمت لتُعلي من قدر عملك." data-en="Every detail designed to elevate your business.">كل تفصيلة صُمّمت لتُعلي من قدر عملك.</h2>
       <p class="feat2-sub" data-ar="إحدى عشرة فيلا مكتبية مستقلة، كلٌّ منها مصمّمة لترتقي بحضور شركتك." data-en="Eleven independent office villas, each designed to elevate your company's presence.">إحدى عشرة فيلا مكتبية مستقلة، كلٌّ منها مصمّمة لترتقي بحضور شركتك.</p>
     </div>
-    <div class="feat2-list">
-      <article class="feat-item reveal">
-        <span class="feat-num">01</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
-            <h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3>
-          </div>
+    <div class="feat-grid2">
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+        <div>
+          <h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3>
           <p data-ar="مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة." data-en="Your own entrance, elevator, parking, and identity — away from the crowd of shared buildings.">مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة.</p>
         </div>
       </article>
-      <article class="feat-item reveal">
-        <span class="feat-num">02</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></span>
-            <h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3>
-          </div>
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></span>
+        <div>
+          <h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3>
           <p data-ar="في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات." data-en="In Al Khobar's Golden Belt, where the elite converge and deals are made.">في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات.</p>
         </div>
       </article>
-      <article class="feat-item reveal">
-        <span class="feat-num">03</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></span>
-            <h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3>
-          </div>
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></span>
+        <div>
+          <h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3>
           <p data-ar="مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك." data-en="Open spaces with flexible partitioning that form around how you work and how your team grows.">مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك.</p>
         </div>
       </article>
-      <article class="feat-item reveal">
-        <span class="feat-num">04</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></span>
-            <h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3>
-          </div>
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></span>
+        <div>
+          <h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3>
           <p data-ar="معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات." data-en="Commercial showrooms, plazas with water fountains, and green spaces just steps away.">معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات.</p>
         </div>
       </article>
-      <article class="feat-item reveal">
-        <span class="feat-num">05</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
-            <h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3>
-          </div>
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
+        <div>
+          <h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3>
           <p data-ar="واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة." data-en="Glass façades for natural light, basement parking, and advanced building systems and services.">واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة.</p>
         </div>
       </article>
-      <article class="feat-item reveal">
-        <span class="feat-num">06</span>
-        <div class="feat-main">
-          <div class="feat-head">
-            <span class="feat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span>
-            <h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3>
-          </div>
+      <article class="feat-cell reveal">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span>
+        <div>
+          <h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3>
           <p data-ar="أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن." data-en="A rare asset in a rare location that appreciates with time.">أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن.</p>
         </div>
       </article>
@@ -693,12 +661,24 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
       <span class="eyebrow" data-ar="المعرض" data-en="Gallery">المعرض</span>
       <h2 class="h2" data-ar="لمحاتٌ من جاديت." data-en="Glimpses of Jadeite.">لمحاتٌ من جاديت.</h2>
     </div>
-    <div class="gal-grid">
-      <div class="gal g-tall reveal"><img src="assets/hero.jpg" alt="Jadeite glass tower" loading="lazy" decoding="async" /></div>
-      <div class="gal g-wide reveal"><img src="assets/exterior.jpg" alt="Jadeite office villa" loading="lazy" decoding="async" /></div>
-      <div class="gal reveal"><img src="assets/workspace.jpg" alt="A workspace that reflects success" loading="lazy" decoding="async" /></div>
-      <div class="gal g-wide reveal"><img src="assets/interior.jpg" alt="Jadeite villa interior" loading="lazy" decoding="async" /></div>
-      <div class="gal reveal"><img src="assets/exterior2.jpg" alt="Jadeite villa facade" loading="lazy" decoding="async" /></div>
+  </div>
+  <div class="gal-slider reveal">
+    <div class="gal-track">
+      <div class="gal-slide"><img src="assets/hero.jpg" alt="Jadeite glass tower" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/experience.jpg" alt="Jadeite office villa" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/workspace.jpg" alt="A workspace that reflects success" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/interior.jpg" alt="Jadeite villa interior" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/exterior.jpg" alt="Jadeite villa exterior" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/community.jpg" alt="Jadeite branded flags" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide"><img src="assets/exterior2.jpg" alt="Jadeite villa facade" loading="lazy" decoding="async" /></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="gal-slide" aria-hidden="true"><img src="assets/hero.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/experience.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/workspace.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/interior.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/exterior.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/community.jpg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="gal-slide" aria-hidden="true"><img src="assets/exterior2.jpg" alt="" loading="lazy" decoding="async" /></div>
     </div>
   </div>
 </section>
