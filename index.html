@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>جاديت · فلل مكتبية | Jadeite Office Villas</title>
+<meta name="description" content="جاديت — فلل مكتبية في الرياض، المملكة العربية السعودية. بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة. Jadeite Office Villas — Riyadh, Saudi Arabia." />
+<link rel="icon" href="assets/logo-ar.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --green:#004438;
+  --green-deep:#00261e;
+  --green-900:#001a14;
+  --green-800:#003329;
+  --green-700:#0a5746;
+  --jade:#2f8d74;
+  --jade-soft:#79b6a5;
+  --silver:#8c9091;
+  --silver-2:#b9bdbb;
+  --bone:#f1efe8;
+  --bone-dim:#cfd2cd;
+  --ink:#070b0a;
+  --glass:rgba(255,255,255,.05);
+  --glass-2:rgba(255,255,255,.08);
+  --glass-brd:rgba(255,255,255,.12);
+  --glass-brd-2:rgba(255,255,255,.2);
+  --hair:rgba(255,255,255,.1);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --maxw:1280px;
+  --font-display:"El Messiri",serif;
+  --font-body:"Tajawal",sans-serif;
+}
+.lang-en{
+  --font-display:"Cormorant Garamond",serif;
+  --font-body:"Jost",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--green-deep);
+  color:var(--bone);
+  overflow-x:hidden;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body.lock{overflow:hidden;height:100vh}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--jade);color:#fff}
+
+/* deep ambient background */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1100px 800px at 80% -10%, rgba(47,141,116,.22), transparent 60%),
+    radial-gradient(900px 900px at 0% 100%, rgba(0,68,56,.5), transparent 60%),
+    linear-gradient(180deg,var(--green-deep),var(--green-900) 60%,var(--ink));
+}
+/* subtle grain */
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ TYPE HELPERS ============ */
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:.74rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--jade-soft);display:inline-flex;align-items:center;gap:.7em;
+}
+.lang-ar .eyebrow{letter-spacing:.18em;font-size:.85rem}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--jade-soft);opacity:.6}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;letter-spacing:-.01em}
+.lang-ar h1,.lang-ar h2,.lang-ar h3{font-weight:600;line-height:1.28;letter-spacing:0}
+.display{font-size:clamp(2.5rem,4.6vw,4.1rem);line-height:1.07}
+.lang-ar .display{font-size:clamp(2.1rem,3.7vw,3.35rem);line-height:1.18}
+.h2{font-size:clamp(2rem,4.4vw,3.5rem)}
+.lead{font-size:clamp(1.05rem,1.5vw,1.28rem);color:var(--bone-dim);font-weight:300;max-width:60ch}
+.lang-ar .lead{font-weight:400}
+.muted{color:var(--silver-2)}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1.2rem,4vw,3rem)}
+section{position:relative;padding-block:clamp(3.25rem,6.5vh,5.5rem)}
+.btn{
+  display:inline-flex;align-items:center;gap:.65em;
+  padding:1.05em 2.1em;border-radius:100px;font-size:.86rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;border:1px solid transparent;
+  transition:.45s var(--ease);white-space:nowrap;
+}
+.lang-ar .btn{letter-spacing:0;text-transform:none;font-size:.98rem}
+.btn-primary{background:var(--bone);color:var(--ink)}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(255,255,255,.4)}
+.btn-ghost{border-color:var(--glass-brd-2);color:var(--bone);background:var(--glass)}
+.btn-ghost:hover{border-color:var(--bone);background:var(--glass-2)}
+.btn .arr{transition:transform .45s var(--ease)}
+[dir=rtl] .btn .arr{transform:scaleX(-1)}
+.btn:hover .arr{transform:translateX(4px)}
+[dir=rtl] .btn:hover .arr{transform:scaleX(-1) translateX(4px)}
+
+/* ============ LOADER ============ */
+#loader{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
+  background:var(--green);
+  transition:opacity 1s var(--ease),visibility 1s var(--ease);
+}
+#loader.done{opacity:0;visibility:hidden}
+.loader-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.8rem}
+.loader-inner img{width:min(260px,56vw);opacity:0;transform:translateY(14px);animation:lin 1.1s var(--ease) .15s forwards}
+@keyframes lin{to{opacity:1;transform:none}}
+.loader-bar{width:min(220px,48vw);height:1px;background:rgba(255,255,255,.18);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:0;background:var(--bone);animation:lbar 1.7s var(--ease) .3s forwards}
+@keyframes lbar{to{width:100%}}
+.loader-tag{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--jade-soft);opacity:0;animation:lin 1s ease .6s forwards}
+.lang-ar .loader-tag{letter-spacing:.2em}
+
+/* ============ NAV ============ */
+header{position:fixed;top:0;inset-inline:0;z-index:90;transition:.5s var(--ease)}
+header.scrolled{background:rgba(0,30,24,.72);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:1.1rem}
+header.scrolled .nav{padding-block:.7rem}
+.nav-logo img{height:42px;width:auto;transition:.4s var(--ease)}
+header.scrolled .nav-logo img{height:36px}
+.nav-links{display:flex;align-items:center;gap:clamp(1rem,2.2vw,2.4rem);list-style:none}
+.nav-links a{font-size:.9rem;color:var(--bone-dim);letter-spacing:.02em;position:relative;padding-block:.4rem;transition:.3s}
+.nav-links a::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:0;height:1px;background:var(--jade-soft);transition:width .4s var(--ease)}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-toggle{
+  display:inline-flex;align-items:center;gap:.4em;background:transparent;border:1px solid var(--glass-brd-2);
+  color:var(--bone);border-radius:100px;padding:.55em 1.1em;font-size:.82rem;font-weight:500;letter-spacing:.06em;transition:.4s var(--ease)
+}
+.lang-toggle:hover{border-color:var(--bone);background:var(--glass)}
+.nav-cta{padding:.7em 1.5em;font-size:.82rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;padding:.4rem}
+.burger span{width:24px;height:2px;background:var(--bone);transition:.35s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile menu */
+.m-menu{position:fixed;inset:0;z-index:80;background:rgba(0,26,20,.96);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;
+  opacity:0;visibility:hidden;transition:.5s var(--ease)}
+.m-menu.open{opacity:1;visibility:visible}
+.m-menu a:not(.btn){font-family:var(--font-display);font-size:1.8rem;color:var(--bone)}
+.m-menu .btn{margin-top:1rem}
+
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding-bottom:clamp(3rem,7vh,6rem);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;animation:kb 22s ease-out forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:
+   linear-gradient(180deg,rgba(0,26,20,.55) 0%,rgba(0,26,20,.05) 22%,rgba(0,30,24,.15) 50%,rgba(0,26,20,.78) 86%,var(--green-deep) 100%),
+   radial-gradient(80% 70% at 50% 120%,rgba(0,68,56,.5),transparent)}
+.hero-grid{display:grid;grid-template-columns:1.7fr .8fr;gap:clamp(2rem,4vw,3.5rem);align-items:end;width:100%}
+.hero-copy{max-width:none}
+.hero h1{margin:1.2rem 0 1.4rem;text-wrap:balance}
+.hero .lead{margin-bottom:2.1rem;max-width:46ch}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.scroll-cue{position:absolute;inset-inline-start:50%;bottom:1.6rem;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.66rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--silver-2);opacity:.8}
+.scroll-cue i{width:1px;height:46px;background:linear-gradient(var(--jade-soft),transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* spec card */
+.spec{
+  background:var(--glass);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  border:1px solid var(--glass-brd);border-radius:22px;padding:1.9rem;
+  box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+.spec h4{font-family:var(--font-body);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--jade-soft);margin-bottom:1.4rem;font-weight:500}
+.lang-ar .spec h4{letter-spacing:.12em}
+.spec-row{display:flex;align-items:flex-start;gap:1rem;padding-block:1rem;border-top:1px solid var(--hair)}
+.spec-row:first-of-type{border-top:0;padding-top:0}
+.spec-ic{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--glass-2);border:1px solid var(--glass-brd);
+  display:grid;place-items:center;color:var(--jade-soft)}
+.spec-ic svg{width:18px;height:18px}
+.spec-row .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver-2);margin-bottom:.15rem}
+.lang-ar .spec-row .k{letter-spacing:0;font-size:.82rem}
+.spec-row .v{font-size:1.02rem;color:var(--bone);font-weight:500;line-height:1.4}
+
+/* ============ section heading block ============ */
+.sec-head{max-width:72ch;margin-bottom:clamp(1.8rem,3.4vw,2.8rem)}
+.sec-head .h2{margin:1.3rem 0 1.3rem}
+
+/* ============ CONCEPT ============ */
+.concept{text-align:center}
+.concept .sec-head{margin-inline:auto;text-align:center}
+.concept .eyebrow{justify-content:center}
+.concept .h2{font-size:clamp(2.2rem,5vw,4rem);max-width:18ch;margin-inline:auto}
+.concept .lead{margin-inline:auto;text-align:center;margin-top:1.8rem}
+.concept-motif{margin-top:2.6rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);
+  border:1px solid var(--hair);border-radius:20px;overflow:hidden}
+.cm{padding:2.6rem 1.8rem;background:rgba(0,38,30,.5)}
+.cm .n{font-family:var(--font-display);font-size:1.5rem;color:var(--jade-soft);margin-bottom:.6rem}
+.cm h3{font-size:1.2rem;margin-bottom:.5rem}
+.cm p{font-size:.94rem;color:var(--silver-2);font-weight:300}
+.lang-ar .cm p{font-weight:400}
+
+/* ============ FEATURES ============ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.card{
+  position:relative;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--glass-brd);border-radius:20px;padding:2.4rem 2rem;overflow:hidden;
+  transition:.55s var(--ease)}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(140deg,rgba(121,182,165,.5),transparent 40%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.55s var(--ease)}
+.card:hover{transform:translateY(-6px);background:var(--glass-2);box-shadow:0 30px 60px -36px rgba(0,0,0,.7)}
+.card:hover::before{opacity:1}
+.card .ic{width:50px;height:50px;border-radius:13px;background:linear-gradient(150deg,rgba(47,141,116,.35),rgba(255,255,255,.04));
+  border:1px solid var(--glass-brd);display:grid;place-items:center;color:var(--jade-soft);margin-bottom:1.6rem}
+.card .ic svg{width:24px;height:24px}
+.card h3{font-size:1.35rem;margin-bottom:.7rem}
+.card p{color:var(--silver-2);font-size:.98rem;font-weight:300}
+.lang-ar .card p{font-weight:400}
+
+/* ============ EXPERIENCE (split) ============ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.split-media{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;
+  border:1px solid var(--glass-brd);box-shadow:0 40px 80px -50px #000}
+.split-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.split-media:hover img{transform:scale(1.05)}
+.split-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(0,38,30,.35))}
+.exp-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap}
+.exp-stats .es .num{font-family:var(--font-display);font-size:2.4rem;color:var(--bone);line-height:1}
+.exp-stats .es .lab{font-size:.82rem;color:var(--silver-2);margin-top:.4rem;letter-spacing:.04em}
+
+#experience .split-media{aspect-ratio:4/3}
+/* ============ COMMUNITY ============ */
+.community .split-media{aspect-ratio:3/4}
+.comm-list{list-style:none;margin-top:1.6rem;display:flex;flex-direction:column;gap:1rem}
+.comm-list li{display:flex;gap:1rem;align-items:flex-start;font-size:1.02rem;color:var(--bone-dim)}
+.comm-list .dot{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--glass-brd-2);
+  display:grid;place-items:center;color:var(--jade-soft);margin-top:.2rem}
+.comm-list .dot svg{width:13px;height:13px}
+
+/* ============ STATS BAND ============ */
+.stats{
+  background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-block:1px solid var(--hair)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat .num{font-family:var(--font-display);font-size:clamp(2.6rem,5vw,4rem);color:var(--bone);line-height:1;font-weight:500}
+.stat .num .u{color:var(--jade-soft)}
+.stat .lab{margin-top:.8rem;font-size:.86rem;letter-spacing:.08em;color:var(--silver-2);text-transform:uppercase}
+.lang-ar .stat .lab{letter-spacing:0;font-size:.95rem;text-transform:none}
+.stat+.stat{border-inline-start:1px solid var(--hair)}
+
+/* ============ GALLERY ============ */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:1rem}
+.gal{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--glass-brd)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.gal:hover img{transform:scale(1.07)}
+.gal::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,26,20,.45),transparent 60%)}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* ============ CONTACT / FORM ============ */
+.contact{position:relative}
+.form-shell{
+  background:var(--glass);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);
+  border:1px solid var(--glass-brd);border-radius:28px;padding:clamp(2rem,5vw,4rem);
+  box-shadow:0 50px 120px -60px #000;position:relative;overflow:hidden}
+.form-shell::before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,141,116,.4),transparent 70%);top:-160px;inset-inline-end:-120px;filter:blur(20px)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem 1.5rem;position:relative}
+.field{display:flex;flex-direction:column;gap:.5rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-2)}
+.lang-ar .field label{letter-spacing:0;font-size:.9rem;text-transform:none}
+.field input,.field select,.field textarea{
+  background:rgba(255,255,255,.04);border:1px solid var(--glass-brd);border-radius:12px;
+  padding:1em 1.1em;color:var(--bone);font-family:inherit;font-size:1rem;transition:.35s var(--ease);width:100%}
+.field textarea{resize:vertical;min-height:120px}
+.field input::placeholder,.field textarea::placeholder{color:rgba(207,210,205,.4)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--jade-soft);background:rgba(255,255,255,.07);box-shadow:0 0 0 4px rgba(47,141,116,.12)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2379b6a5' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 1.1rem center}
+[dir=rtl] .field select{background-position:left 1.1rem center}
+[dir=ltr] .field select{background-position:right 1.1rem center}
+.field select option{background:var(--green-deep);color:var(--bone)}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
+.form-note{font-size:.82rem;color:var(--silver);max-width:38ch}
+.form-shell .btn-primary{padding:1.1em 2.6em}
+.form-success{display:none;text-align:center;padding:1rem 0}
+.form-success.show{display:block;animation:lin .6s ease}
+.form-success .tick{width:64px;height:64px;border-radius:50%;border:1px solid var(--jade-soft);display:grid;place-items:center;margin:0 auto 1.4rem;color:var(--jade-soft)}
+.form-success h3{font-size:1.8rem;margin-bottom:.6rem}
+.form-success p{color:var(--silver-2)}
+
+.contact-aside{margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;background:rgba(0,20,15,.5)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;margin-bottom:2.4rem}
+.foot-logo img{height:50px;margin-bottom:1.4rem}
+.foot-brand p{color:var(--silver-2);font-weight:300;max-width:34ch}
+.lang-ar .foot-brand p{font-weight:400}
+.foot-col h5{font-family:var(--font-body);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--jade-soft);margin-bottom:1.3rem;font-weight:600}
+.lang-ar .foot-col h5{letter-spacing:.05em}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+.foot-col a,.foot-col li{color:var(--bone-dim);font-size:.95rem;transition:.3s}
+.foot-col a:hover{color:var(--bone)}
+.socials{display:flex;gap:.8rem;margin-top:1.6rem}
+.socials a{width:40px;height:40px;border-radius:50%;border:1px solid var(--glass-brd);display:grid;place-items:center;color:var(--bone-dim);transition:.4s var(--ease)}
+.socials a:hover{border-color:var(--jade-soft);color:var(--bone);transform:translateY(-3px)}
+.socials svg{width:17px;height:17px}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1.8rem;border-top:1px solid var(--hair);flex-wrap:wrap}
+.foot-bottom p{font-size:.82rem;color:var(--silver)}
+
+/* ============ MODAL ============ */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:1.2rem;
+  opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s var(--ease)}
+.modal.open{opacity:1;visibility:visible}
+.modal-overlay{position:absolute;inset:0;background:rgba(0,12,9,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal-card{position:relative;width:min(640px,100%);max-height:90vh;overflow:hidden auto;
+  background:linear-gradient(160deg,rgba(10,52,42,.97),rgba(0,28,22,.98));
+  border:1px solid var(--glass-brd);border-radius:24px;padding:clamp(1.8rem,4vw,3rem);
+  box-shadow:0 50px 130px -50px #000;transform:translateY(26px) scale(.97);opacity:0;
+  transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.modal.open .modal-card{transform:none;opacity:1}
+.modal-card::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,141,116,.32),transparent 70%);top:-160px;inset-inline-end:-120px;pointer-events:none}
+.modal-close{position:absolute;top:1rem;inset-inline-end:1rem;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--glass-brd);background:var(--glass);color:var(--bone);display:grid;place-items:center;
+  font-size:1rem;line-height:1;transition:.4s var(--ease);z-index:3}
+.modal-close:hover{background:var(--glass-2);border-color:var(--bone);transform:rotate(90deg)}
+.modal-head{margin-bottom:1.5rem;position:relative}
+.modal-head .eyebrow{margin-bottom:.8rem}
+.modal-head h3{font-size:clamp(1.5rem,3vw,2.1rem)}
+.modal-head p{color:var(--silver-2);font-size:.95rem;margin-top:.55rem;font-weight:300}
+.lang-ar .modal-head p{font-weight:400}
+.modal .form-grid{gap:1rem 1.1rem;position:relative}
+.modal .form-foot{margin-top:1.4rem}
+
+/* ============ BACK TO TOP ============ */
+.to-top{position:fixed;bottom:1.5rem;inset-inline-end:1.5rem;z-index:120;
+  width:48px;height:48px;border-radius:50%;border:1px solid var(--glass-brd-2);
+  background:rgba(0,30,24,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  color:var(--bone);display:grid;place-items:center;
+  opacity:0;visibility:hidden;transform:translateY(14px);transition:.45s var(--ease)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--green-700);border-color:var(--jade-soft);transform:translateY(-4px)}
+.to-top svg{width:20px;height:20px}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:2rem}
+  .hero{align-items:center;padding-top:7rem}
+  .spec{max-width:480px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr;gap:2.5rem}
+  .community .split-inner{order:2}
+  .concept-motif{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem 1rem}
+  .stat:nth-child(2){border-inline-start:0}
+  .stat:nth-child(3){border-inline-start:0}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:1/-1}
+}
+@media(max-width:560px){
+  .feat-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .stat+.stat{border-inline-start:0;border-top:1px solid var(--hair);padding-top:2.5rem}
+  .form-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+  .g-wide{grid-column:auto}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body class="lang-ar lock">
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-inner">
+    <img id="loaderLogo" src="assets/logo-ar-white.png" alt="Jadeite" />
+    <div class="loader-bar"><i></i></div>
+    <div class="loader-tag" data-ar="مستقبل الازدهار" data-en="The Future of Prosperity">مستقبل الازدهار</div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="nav-logo"><img id="navLogo" src="assets/logo-ar-white.png" alt="Jadeite Office Villas" /></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#concept" data-ar="المشروع" data-en="The Project">المشروع</a></li>
+        <li><a href="#features" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</a></li>
+        <li><a href="#experience" data-ar="التجربة" data-en="The Experience">التجربة</a></li>
+        <li><a href="#community" data-ar="المجتمع" data-en="The Community">المجتمع</a></li>
+        <li><a href="#gallery" data-ar="المعرض" data-en="Gallery">المعرض</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn" aria-label="Switch language"><span data-ar="EN" data-en="ع">EN</span></button>
+      <a href="#contact" data-open-modal class="btn btn-ghost nav-cta" data-ar="سجّل اهتمامك" data-en="Register Interest">سجّل اهتمامك</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="m-menu" id="mMenu">
+  <a href="#concept" data-ar="المشروع" data-en="The Project">المشروع</a>
+  <a href="#features" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</a>
+  <a href="#experience" data-ar="التجربة" data-en="The Experience">التجربة</a>
+  <a href="#community" data-ar="المجتمع" data-en="The Community">المجتمع</a>
+  <a href="#gallery" data-ar="المعرض" data-en="Gallery">المعرض</a>
+  <a href="#contact" data-open-modal class="btn btn-primary" data-ar="سجّل اهتمامك" data-en="Register Interest">سجّل اهتمامك</a>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"><img src="assets/hero.jpg" alt="" /></div>
+  <div class="wrap" style="width:100%">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow" data-ar="المملكة العربية السعودية · الرياض" data-en="Kingdom of Saudi Arabia · Riyadh">المملكة العربية السعودية · الرياض</span>
+        <h1 class="display" data-ar="فللٌ مكتبية<br>تُعيد تعريف مكان العمل" data-en="Office villas that<br>redefine the workplace">فللٌ مكتبية<br>تُعيد تعريف مكان العمل</h1>
+        <p class="lead" data-ar="بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة." data-en="Instead of a floor in a tower, give your company a standalone villa with an identity of its own — within an integrated community made for the few.">بدلاً من طابقٍ في برج، امنح شركتك فيلا مستقلة بهويتها الخاصة — في مجتمعٍ متكامل صُمّم للنخبة.</p>
+        <div class="hero-ctas">
+          <a href="#contact" data-open-modal class="btn btn-primary" data-ar="احجز جولة خاصة" data-en="Book a private tour">احجز جولة خاصة</a>
+          <a href="#concept" class="btn btn-ghost" data-ar="اكتشف المشروع" data-en="Discover the project">اكتشف المشروع <span class="arr">→</span></a>
+        </div>
+      </div>
+
+      <aside class="spec reveal">
+        <h4 data-ar="لمحة عن المشروع" data-en="Project at a glance">لمحة عن المشروع</h4>
+        <div class="spec-row">
+          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-10a7 7 0 0114 0c0 4.8-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+          <div><div class="k" data-ar="الموقع" data-en="Location">الموقع</div><div class="v" data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Saudi Arabia">الرياض، المملكة العربية السعودية</div></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V8l5-3 5 3v13M9 12h2M9 16h2M14 12h1M14 16h1"/></svg></div>
+          <div><div class="k" data-ar="عدد الفلل" data-en="Villas">عدد الفلل</div><div class="v" data-ar="٤٢ فيلا مكتبية" data-en="42 office villas">٤٢ فيلا مكتبية</div></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
+          <div><div class="k" data-ar="المساحات" data-en="Sizes">المساحات</div><div class="v" data-ar="من ٣٢٠ إلى ٧٥٠ م²" data-en="320 – 750 m²">من ٣٢٠ إلى ٧٥٠ م²</div></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><div class="k" data-ar="التسليم" data-en="Handover">التسليم</div><div class="v" data-ar="الربع الأول ٢٠٢٧" data-en="Q1 2027">الربع الأول ٢٠٢٧</div></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-ar="انزل للأسفل" data-en="Scroll">انزل للأسفل</span><i></i></div>
+</section>
+
+<!-- ============ CONCEPT ============ -->
+<section class="concept" id="concept">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ar="الفكرة" data-en="The Concept">الفكرة</span>
+      <h2 class="h2" data-ar="شركتك تستحق عنوانًا، لا مجرّد مساحة." data-en="Your company deserves an address — not just space.">شركتك تستحق عنوانًا، لا مجرّد مساحة.</h2>
+      <p class="lead" data-ar="تخيّل أن يكون مقرّ أعمالك فيلا قائمة بذاتها: مدخلٌ خاص، واجهةٌ تحمل هويتك، ومساحاتٌ تتنفّس على حدائق المجتمع. جاديت ليست عقارًا تستأجره — بل مكانةٌ تنتمي إليها." data-en="Picture your headquarters as a villa of its own: a private entrance, a façade that carries your identity, and spaces that breathe onto the community's gardens. Jadeite isn't property you lease — it's a standing you belong to.">تخيّل أن يكون مقرّ أعمالك فيلا قائمة بذاتها: مدخلٌ خاص، واجهةٌ تحمل هويتك، ومساحاتٌ تتنفّس على حدائق المجتمع. جاديت ليست عقارًا تستأجره — بل مكانةٌ تنتمي إليها.</p>
+    </div>
+    <div class="concept-motif reveal">
+      <div class="cm">
+        <div class="n">01</div>
+        <h3 data-ar="ليس برجًا" data-en="Not a tower">ليس برجًا</h3>
+        <p data-ar="لا مصاعد مزدحمة ولا طوابق مشتركة — مدخلك وحدك." data-en="No crowded lifts, no shared floors — your own front door.">لا مصاعد مزدحمة ولا طوابق مشتركة — مدخلك وحدك.</p>
+      </div>
+      <div class="cm">
+        <div class="n">02</div>
+        <h3 data-ar="بل فيلا" data-en="But a villa">بل فيلا</h3>
+        <p data-ar="مبنى مستقل يحمل اسم شركتك وحضورها." data-en="A standalone building carrying your company's name and presence.">مبنى مستقل يحمل اسم شركتك وحضورها.</p>
+      </div>
+      <div class="cm">
+        <div class="n">03</div>
+        <h3 data-ar="ضمن مجتمع" data-en="Within a community">ضمن مجتمع</h3>
+        <p data-ar="مجمع متكامل من النخبة، بحدائقه وخدماته." data-en="An integrated community of peers, with its gardens and services.">مجمع متكامل من النخبة، بحدائقه وخدماته.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</span>
+      <h2 class="h2" data-ar="كل تفصيلة صُمّمت لتُعلي من قدر عملك." data-en="Every detail designed to elevate your business.">كل تفصيلة صُمّمت لتُعلي من قدر عملك.</h2>
+    </div>
+    <div class="feat-grid">
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+        <h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3>
+        <p data-ar="مدخل ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة." data-en="Your own entrance, parking, and identity — away from the crowd of shared buildings.">مدخل ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></div>
+        <h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3>
+        <p data-ar="في قلب الرياض، حيث تجتمع النخبة وتُصنع الصفقات." data-en="In the heart of Riyadh, where the elite converge and deals are made.">في قلب الرياض، حيث تجتمع النخبة وتُصنع الصفقات.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></div>
+        <h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3>
+        <p data-ar="تصاميم مرنة تتشكّل حول طريقة عملك وطموح فريقك." data-en="Flexible layouts that form around how you work and how your team grows.">تصاميم مرنة تتشكّل حول طريقة عملك وطموح فريقك.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></div>
+        <h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3>
+        <p data-ar="حدائق، مقاهٍ، ومطاعم وخدمات راقية على بُعد خطوات." data-en="Gardens, cafés, fine dining, and services just steps away.">حدائق، مقاهٍ، ومطاعم وخدمات راقية على بُعد خطوات.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div>
+        <h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3>
+        <p data-ar="أنظمة إدارة مبانٍ متقدمة وأمن واتصالات في كل فيلا." data-en="Advanced building management, security, and connectivity in every villa.">أنظمة إدارة مبانٍ متقدمة وأمن واتصالات في كل فيلا.</p>
+      </article>
+      <article class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
+        <h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3>
+        <p data-ar="أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن." data-en="A rare asset in a rare location that appreciates with time.">أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" data-ar="رفاهية وعمل" data-en="Luxury & Work">رفاهية وعمل</span>
+      <h2 class="h2" style="margin:1.3rem 0" data-ar="بيئاتٌ ينمو فيها الإنجاز." data-en="Environments where achievement grows.">بيئاتٌ ينمو فيها الإنجاز.</h2>
+      <p class="lead" data-ar="بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان." data-en="Between walls that inspire and gardens that restore, each villa is shaped to give your team deeper focus and a finer presence. Here, the gravity of work meets the luxury of place.">بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان.</p>
+      <div class="exp-stats">
+        <div class="es"><div class="num" data-count="100" data-suffix="%">0</div><div class="lab" data-ar="ملكية مستقلة لكل فيلا" data-en="Independent ownership">ملكية مستقلة لكل فيلا</div></div>
+        <div class="es"><div class="num" data-count="3" data-suffix="">0</div><div class="lab" data-ar="طوابق قابلة للتخصيص" data-en="Customisable floors">طوابق قابلة للتخصيص</div></div>
+        <div class="es"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lab" data-ar="أمن وخدمة" data-en="Security & concierge">أمن وخدمة</div></div>
+      </div>
+    </div>
+    <div class="split-media reveal">
+      <img src="assets/experience.jpg" alt="Jadeite office villa exterior" loading="lazy" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section id="community" class="community">
+  <div class="wrap split">
+    <div class="split-media reveal">
+      <img src="assets/community.jpg" alt="Jadeite branded flags" loading="lazy" decoding="async" />
+    </div>
+    <div class="split-inner reveal">
+      <span class="eyebrow" data-ar="المجتمع" data-en="The Community">المجتمع</span>
+      <h2 class="h2" style="margin:1.3rem 0" data-ar="منظورٌ مبتكر للبيئات المكتبية." data-en="An innovative perspective on office environments.">منظورٌ مبتكر للبيئات المكتبية.</h2>
+      <p class="lead" data-ar="مجمعٌ مخطّطٌ بعناية تتناغم فيه الفلل مع المساحات الخضراء والممرات والساحات، ليصبح مكان العمل وجهةً تليق بمكانة من فيها." data-en="A carefully master-planned community where villas, green spaces, walkways, and plazas come together — turning the workplace into a destination worthy of those within it.">مجمعٌ مخطّطٌ بعناية تتناغم فيه الفلل مع المساحات الخضراء والممرات والساحات، ليصبح مكان العمل وجهةً تليق بمكانة من فيها.</p>
+      <ul class="comm-list">
+        <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l4 4L19 6"/></svg></span><span data-ar="ساحات وممرات مشاة مظللة تربط المجمع بالكامل" data-en="Shaded plazas and pedestrian walkways linking the whole community">ساحات وممرات مشاة مظللة تربط المجمع بالكامل</span></li>
+        <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l4 4L19 6"/></svg></span><span data-ar="مساحات خضراء واسعة تتنفّس بها كل فيلا" data-en="Generous green spaces every villa opens onto">مساحات خضراء واسعة تتنفّس بها كل فيلا</span></li>
+        <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l4 4L19 6"/></svg></span><span data-ar="مواقف وفيرة وبوابات دخول آمنة على مدار الساعة" data-en="Ample parking and secure, round-the-clock access gates">مواقف وفيرة وبوابات دخول آمنة على مدار الساعة</span></li>
+        <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l4 4L19 6"/></svg></span><span data-ar="مرافق خدمية ومطاعم ومقاهٍ ضمن المجمع" data-en="On-site dining, cafés, and service amenities">مرافق خدمية ومطاعم ومقاهٍ ضمن المجمع</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num"><span data-count="42">0</span></div><div class="lab" data-ar="فيلا مكتبية" data-en="Office Villas">فيلا مكتبية</div></div>
+    <div class="stat reveal"><div class="num"><span data-count="35">0</span><span class="u">%</span></div><div class="lab" data-ar="مساحات خضراء" data-en="Green Spaces">مساحات خضراء</div></div>
+    <div class="stat reveal"><div class="num"><span data-count="7">0</span><span class="u">+</span></div><div class="lab" data-ar="مرافق متكاملة" data-en="Amenities">مرافق متكاملة</div></div>
+    <div class="stat reveal"><div class="num"><span data-count="24">0</span><span class="u">/7</span></div><div class="lab" data-ar="أمن وصيانة" data-en="Security & Care">أمن وصيانة</div></div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ar="المعرض" data-en="Gallery">المعرض</span>
+      <h2 class="h2" data-ar="لمحاتٌ من جاديت." data-en="Glimpses of Jadeite.">لمحاتٌ من جاديت.</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal g-tall reveal"><img src="assets/hero.jpg" alt="Jadeite glass tower" loading="lazy" decoding="async" /></div>
+      <div class="gal g-wide reveal"><img src="assets/exterior.jpg" alt="Jadeite office villa" loading="lazy" decoding="async" /></div>
+      <div class="gal reveal"><img src="assets/workspace.jpg" alt="A workspace that reflects success" loading="lazy" decoding="async" /></div>
+      <div class="gal g-wide reveal"><img src="assets/interior.jpg" alt="Jadeite villa interior" loading="lazy" decoding="async" /></div>
+      <div class="gal reveal"><img src="assets/exterior2.jpg" alt="Jadeite villa facade" loading="lazy" decoding="async" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head contact-aside reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center" data-ar="ابدأ هنا" data-en="Begin Here">ابدأ هنا</span>
+      <h2 class="h2" style="margin:1.3rem auto;max-width:20ch" data-ar="سجّل اهتمامك بفيلّتك." data-en="Register interest in your villa.">سجّل اهتمامك بفيلّتك.</h2>
+      <p class="lead" style="margin-inline:auto" data-ar="اترك تفاصيلك وسيتواصل معك فريق المبيعات الخاص لترتيب جولة وعرض الخيارات المتاحة." data-en="Leave your details and our private sales team will arrange a tour and walk you through availability.">اترك تفاصيلك وسيتواصل معك فريق المبيعات الخاص لترتيب جولة وعرض الخيارات المتاحة.</p>
+    </div>
+
+    <div class="form-shell reveal">
+      <form id="leadForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label data-ar="الاسم الكامل" data-en="Full name">الاسم الكامل</label>
+            <input type="text" name="name" required data-ar-ph="اكتب اسمك" data-en-ph="Your name" placeholder="اكتب اسمك" />
+          </div>
+          <div class="field">
+            <label data-ar="اسم الشركة" data-en="Company">اسم الشركة</label>
+            <input type="text" name="company" data-ar-ph="اسم شركتك" data-en-ph="Your company" placeholder="اسم شركتك" />
+          </div>
+          <div class="field">
+            <label data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</label>
+            <input type="tel" name="phone" required data-ar-ph="+966" data-en-ph="+966" placeholder="+966" />
+          </div>
+          <div class="field">
+            <label data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+            <input type="email" name="email" required data-ar-ph="name@company.com" data-en-ph="name@company.com" placeholder="name@company.com" />
+          </div>
+          <div class="field">
+            <label data-ar="المساحة المهتم بها" data-en="Preferred size">المساحة المهتم بها</label>
+            <select name="size">
+              <option value="" data-ar="اختر المساحة" data-en="Select a size">اختر المساحة</option>
+              <option value="320-450" data-ar="٣٢٠ – ٤٥٠ م²" data-en="320 – 450 m²">٣٢٠ – ٤٥٠ م²</option>
+              <option value="450-600" data-ar="٤٥٠ – ٦٠٠ م²" data-en="450 – 600 m²">٤٥٠ – ٦٠٠ م²</option>
+              <option value="600-750" data-ar="٦٠٠ – ٧٥٠ م²" data-en="600 – 750 m²">٦٠٠ – ٧٥٠ م²</option>
+              <option value="advice" data-ar="أحتاج إلى استشارة" data-en="I'd like advice">أحتاج إلى استشارة</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ar="الغرض" data-en="Purpose">الغرض</label>
+            <select name="purpose">
+              <option value="" data-ar="اختر الغرض" data-en="Select purpose">اختر الغرض</option>
+              <option value="hq" data-ar="مقرّ رئيسي للشركة" data-en="Company headquarters">مقرّ رئيسي للشركة</option>
+              <option value="branch" data-ar="فرع / مكتب إضافي" data-en="Branch / additional office">فرع / مكتب إضافي</option>
+              <option value="invest" data-ar="استثمار" data-en="Investment">استثمار</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label data-ar="رسالتك (اختياري)" data-en="Message (optional)">رسالتك (اختياري)</label>
+            <textarea name="message" data-ar-ph="أخبرنا بما تبحث عنه..." data-en-ph="Tell us what you're looking for..." placeholder="أخبرنا بما تبحث عنه..."></textarea>
+          </div>
+        </div>
+        <div class="form-foot">
+          <p class="form-note" data-ar="بياناتك سرّية ولن تُستخدم إلا للتواصل بخصوص جاديت." data-en="Your details are confidential and used only to contact you about Jadeite.">بياناتك سرّية ولن تُستخدم إلا للتواصل بخصوص جاديت.</p>
+          <button type="submit" class="btn btn-primary" data-ar="أرسل الطلب" data-en="Send request">أرسل الطلب <span class="arr">→</span></button>
+        </div>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 6"/></svg></div>
+        <h3 data-ar="شكرًا لاهتمامك" data-en="Thank you">شكرًا لاهتمامك</h3>
+        <p data-ar="تم استلام طلبك. سيتواصل معك فريق المبيعات الخاص قريبًا." data-en="Your request has been received. Our private sales team will be in touch shortly.">تم استلام طلبك. سيتواصل معك فريق المبيعات الخاص قريبًا.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ REGISTER MODAL ============ -->
+<div class="modal" id="regModal" aria-hidden="true">
+  <div class="modal-overlay" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="regModalTitle">
+    <button class="modal-close" data-close aria-label="Close">&#10005;</button>
+    <div class="modal-head">
+      <span class="eyebrow" data-ar="سجّل اهتمامك" data-en="Register Interest">سجّل اهتمامك</span>
+      <h3 id="regModalTitle" data-ar="احجز فيلّتك المكتبية" data-en="Reserve your office villa">احجز فيلّتك المكتبية</h3>
+      <p data-ar="اترك تفاصيلك وسيتواصل معك فريق المبيعات الخاص لترتيب جولة وعرض الخيارات المتاحة." data-en="Leave your details and our private sales team will arrange a tour and walk you through availability.">اترك تفاصيلك وسيتواصل معك فريق المبيعات الخاص لترتيب جولة وعرض الخيارات المتاحة.</p>
+    </div>
+    <form id="modalForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label data-ar="الاسم الكامل" data-en="Full name">الاسم الكامل</label>
+          <input type="text" name="name" required data-ar-ph="اكتب اسمك" data-en-ph="Your name" placeholder="اكتب اسمك" />
+        </div>
+        <div class="field">
+          <label data-ar="اسم الشركة" data-en="Company">اسم الشركة</label>
+          <input type="text" name="company" data-ar-ph="اسم شركتك" data-en-ph="Your company" placeholder="اسم شركتك" />
+        </div>
+        <div class="field">
+          <label data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</label>
+          <input type="tel" name="phone" required data-ar-ph="+966" data-en-ph="+966" placeholder="+966" />
+        </div>
+        <div class="field">
+          <label data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+          <input type="email" name="email" required data-ar-ph="name@company.com" data-en-ph="name@company.com" placeholder="name@company.com" />
+        </div>
+        <div class="field full">
+          <label data-ar="المساحة المهتم بها" data-en="Preferred size">المساحة المهتم بها</label>
+          <select name="size">
+            <option value="" data-ar="اختر المساحة" data-en="Select a size">اختر المساحة</option>
+            <option value="320-450" data-ar="٣٢٠ – ٤٥٠ م²" data-en="320 – 450 m²">٣٢٠ – ٤٥٠ م²</option>
+            <option value="450-600" data-ar="٤٥٠ – ٦٠٠ م²" data-en="450 – 600 m²">٤٥٠ – ٦٠٠ م²</option>
+            <option value="600-750" data-ar="٦٠٠ – ٧٥٠ م²" data-en="600 – 750 m²">٦٠٠ – ٧٥٠ م²</option>
+            <option value="advice" data-ar="أحتاج إلى استشارة" data-en="I'd like advice">أحتاج إلى استشارة</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label data-ar="رسالتك (اختياري)" data-en="Message (optional)">رسالتك (اختياري)</label>
+          <textarea name="message" data-ar-ph="أخبرنا بما تبحث عنه..." data-en-ph="Tell us what you're looking for..." placeholder="أخبرنا بما تبحث عنه..."></textarea>
+        </div>
+      </div>
+      <div class="form-foot">
+        <p class="form-note" data-ar="بياناتك سرّية ولن تُستخدم إلا للتواصل بخصوص جاديت." data-en="Your details are confidential and used only to contact you about Jadeite.">بياناتك سرّية ولن تُستخدم إلا للتواصل بخصوص جاديت.</p>
+        <button type="submit" class="btn btn-primary" data-ar="أرسل الطلب" data-en="Send request">أرسل الطلب <span class="arr">→</span></button>
+      </div>
+    </form>
+    <div class="form-success" id="modalSuccess">
+      <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 6"/></svg></div>
+      <h3 data-ar="شكرًا لاهتمامك" data-en="Thank you">شكرًا لاهتمامك</h3>
+      <p data-ar="تم استلام طلبك. سيتواصل معك فريق المبيعات الخاص قريبًا." data-en="Your request has been received. Our private sales team will be in touch shortly.">تم استلام طلبك. سيتواصل معك فريق المبيعات الخاص قريبًا.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BACK TO TOP ============ -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="foot-logo"><img id="footLogo" src="assets/logo-ar-white.png" alt="Jadeite Office Villas" /></a>
+        <p data-ar="فللٌ مكتبية في قلب الرياض — حيث يصبح مقرّ عملك عنوانًا يحمل اسمك." data-en="Office villas in the heart of Riyadh — where your workplace becomes an address that carries your name.">فللٌ مكتبية في قلب الرياض — حيث يصبح مقرّ عملك عنوانًا يحمل اسمك.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 002.5 6a2.5 2.5 0 005 0 2.5 2.5 0 00-2.52-2.5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H18.6v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H10z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 01-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1121 11.5z"/><path d="M8.5 9.5c0 3 2 5 5 5"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5 data-ar="روابط" data-en="Explore">روابط</h5>
+        <ul>
+          <li><a href="#concept" data-ar="المشروع" data-en="The Project">المشروع</a></li>
+          <li><a href="#features" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</a></li>
+          <li><a href="#community" data-ar="المجتمع" data-en="The Community">المجتمع</a></li>
+          <li><a href="#gallery" data-ar="المعرض" data-en="Gallery">المعرض</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-ar="تواصل" data-en="Contact">تواصل</h5>
+        <ul>
+          <li data-ar="الرياض، المملكة العربية السعودية" data-en="Riyadh, Kingdom of Saudi Arabia">الرياض، المملكة العربية السعودية</li>
+          <li><a href="tel:+966110000000" dir="ltr">+966 11 000 0000</a></li>
+          <li><a href="mailto:sales@jadeite.sa">sales@jadeite.sa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p data-ar="© 2026 جاديت — فلل مكتبية. جميع الحقوق محفوظة." data-en="© 2026 Jadeite Office Villas. All rights reserved.">© 2026 جاديت — فلل مكتبية. جميع الحقوق محفوظة.</p>
+      <p data-ar="مستقبل الازدهار" data-en="The Future of Prosperity">مستقبل الازدهار</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement, body=document.body;
+  var LANG='ar';
+
+  /* ---------- LOADER ---------- */
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      document.getElementById('loader').classList.add('done');
+      body.classList.remove('lock');
+    },2100);
+  });
+
+  /* ---------- LANGUAGE ---------- */
+  function applyLang(lang){
+    LANG=lang;
+    html.lang=lang; html.dir=(lang==='ar')?'rtl':'ltr';
+    body.classList.toggle('lang-ar',lang==='ar');
+    body.classList.toggle('lang-en',lang==='en');
+    document.querySelectorAll('[data-ar]').forEach(function(el){
+      var v=el.getAttribute('data-'+lang);
+      if(v!==null) el.innerHTML=v;
+    });
+    document.querySelectorAll('[data-ar-ph]').forEach(function(el){
+      var v=el.getAttribute('data-'+lang+'-ph');
+      if(v!==null) el.setAttribute('placeholder',v);
+    });
+    var logo=(lang==='ar')?'assets/logo-ar-white.png':'assets/logo-en-white.png';
+    ['navLogo','footLogo','loaderLogo'].forEach(function(id){
+      var im=document.getElementById(id); if(im) im.src=logo;
+    });
+    try{localStorage.setItem('jadeite-lang',lang);}catch(e){}
+  }
+  document.getElementById('langBtn').addEventListener('click',function(){
+    applyLang(LANG==='ar'?'en':'ar');
+  });
+  try{var saved=localStorage.getItem('jadeite-lang'); if(saved&&saved!=='ar') applyLang(saved);}catch(e){}
+
+  /* ---------- HEADER SCROLL ---------- */
+  var header=document.getElementById('header');
+  var onScroll=function(){ header.classList.toggle('scrolled',window.scrollY>40); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* ---------- MOBILE MENU ---------- */
+  var burger=document.getElementById('burger'), mMenu=document.getElementById('mMenu');
+  function closeMenu(){burger.classList.remove('open');mMenu.classList.remove('open');body.classList.remove('lock');}
+  burger.addEventListener('click',function(){
+    var open=burger.classList.toggle('open');
+    mMenu.classList.toggle('open',open);
+    body.classList.toggle('lock',open);
+  });
+  mMenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu);});
+
+  /* ---------- REVEAL ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+        if(e.target.querySelector&&e.target.querySelector('[data-count]')) countUp(e.target);
+        if(e.target.hasAttribute&&e.target.hasAttribute('data-count')) countUp(e.target);
+      }
+    });
+  },{threshold:.16});
+  document.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay=(Math.min(i%4,3)*0.08)+'s';
+    io.observe(el);
+  });
+
+  /* ---------- COUNT UP ---------- */
+  function countUp(scope){
+    var nodes = scope.hasAttribute('data-count') ? [scope] : scope.querySelectorAll('[data-count]');
+    nodes.forEach(function(n){
+      if(n.dataset.done) return; n.dataset.done='1';
+      var target=parseInt(n.getAttribute('data-count'),10), t0=null, dur=1500;
+      var pre=n.getAttribute('data-prefix')||'', suf=n.getAttribute('data-suffix')||'';
+      function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+        var val=Math.floor((1-Math.pow(1-p,3))*target);
+        n.textContent=pre+val+suf; if(p<1) requestAnimationFrame(step); else n.textContent=pre+target+suf;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* ---------- FORMS (in-page + modal) ---------- */
+  function wireForm(form, success, opts){
+    if(!form||!success) return;
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      /* TODO: wire to backend / Formspree — e.g. fetch('https://formspree.io/f/XXXX',{method:'POST',body:new FormData(form)}) */
+      form.style.display='none';
+      success.classList.add('show');
+      if(opts&&opts.scroll){ var t=document.getElementById('contact'); if(t) t.scrollIntoView({behavior:'smooth',block:'center'}); }
+    });
+  }
+  wireForm(document.getElementById('leadForm'), document.getElementById('formSuccess'), {scroll:true});
+  wireForm(document.getElementById('modalForm'), document.getElementById('modalSuccess'), {scroll:false});
+
+  /* ---------- REGISTER MODAL ---------- */
+  var regModal=document.getElementById('regModal');
+  function openModal(){
+    if(mMenu.classList.contains('open')) closeMenu();
+    regModal.classList.add('open');
+    regModal.setAttribute('aria-hidden','false');
+    body.classList.add('lock');
+    var first=regModal.querySelector('input,select,textarea');
+    setTimeout(function(){ if(first) first.focus(); },140);
+  }
+  function closeModal(){
+    regModal.classList.remove('open');
+    regModal.setAttribute('aria-hidden','true');
+    body.classList.remove('lock');
+  }
+  document.querySelectorAll('[data-open-modal]').forEach(function(el){
+    el.addEventListener('click',function(e){ e.preventDefault(); openModal(); });
+  });
+  regModal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click',closeModal); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&regModal.classList.contains('open')) closeModal();
+  });
+
+  /* ---------- BACK TO TOP ---------- */
+  var toTop=document.getElementById('toTop');
+  var onScrollTop=function(){ toTop.classList.toggle('show', window.scrollY>520); };
+  onScrollTop(); window.addEventListener('scroll',onScrollTop,{passive:true});
+  toTop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+})();
+</script>
+</body>
+</html>
