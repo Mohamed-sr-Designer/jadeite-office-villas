@@ -46,6 +46,7 @@
   --cm-bg:rgba(0,38,30,.5);
   --modal-bg:linear-gradient(160deg,rgba(10,52,42,.97),rgba(0,28,22,.98));
   --totop-bg:rgba(0,30,24,.7);
+  --cell-bg:rgba(255,255,255,.022); --cell-bg-h:rgba(255,255,255,.06);
   --grain:.035;
 }
 /* ---- LIGHT THEME (cream + deep emerald) ---- */
@@ -70,6 +71,7 @@
   --cm-bg:rgba(255,255,255,.5);
   --modal-bg:linear-gradient(160deg,#f6f2e9,#eee7da);
   --totop-bg:rgba(255,255,255,.82);
+  --cell-bg:rgba(255,255,255,.5); --cell-bg-h:rgba(255,255,255,.85);
   --grain:.02;
 }
 /* keep nav, hero, mobile menu & loader dark in BOTH themes */
@@ -209,13 +211,14 @@ header.scrolled .nav-logo img{height:36px}
 
 /* ============ HERO ============ */
 .hero{min-height:84svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:7.5rem 0 clamp(3rem,6vh,4.5rem);overflow:hidden}
+  text-align:center;padding:7.5rem 0 clamp(3rem,6vh,4.5rem);overflow:hidden;color:var(--bone)}
+.hero h1{color:var(--bone)}
 .hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;animation:kb 22s ease-out forwards}
 @keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-   linear-gradient(180deg,rgba(0,22,17,.7) 0%,rgba(0,22,17,.52) 42%,rgba(0,22,17,.74) 82%,var(--page-base) 100%),
+   linear-gradient(180deg,rgba(0,22,17,.72) 0%,rgba(0,22,17,.5) 42%,rgba(0,22,17,.86) 100%),
    radial-gradient(78% 72% at 50% 44%,rgba(0,32,25,.72),rgba(0,32,25,.12) 82%)}
 .hero-inner{display:flex;flex-direction:column;align-items:center;width:100%}
 .hero .eyebrow{justify-content:center}
@@ -272,20 +275,29 @@ header.scrolled .nav-logo img{height:36px}
 .cm p{font-size:.94rem;color:var(--silver-2);font-weight:300}
 .lang-ar .cm p{font-weight:400}
 
-/* ============ FEATURES (2-col grid, icon beside text) ============ */
+/* ============ FEATURES (premium hairline matrix) ============ */
 .feat2-sub{margin-top:1rem;max-width:52ch;color:var(--silver-2);font-weight:300}
 .lang-ar .feat2-sub{font-weight:400}
-.feat-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:clamp(1.8rem,3.4vw,2.6rem)}
-.feat-cell{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:start;
-  padding:1.6rem;border:1px solid var(--glass-brd);border-radius:16px;background:var(--glass);
-  transition:.45s var(--ease)}
-.feat-cell:hover{background:var(--glass-2);border-color:var(--jade-soft);transform:translateY(-3px)}
-.feat-cell .ic{flex:0 0 auto;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
-  color:var(--jade-soft);background:linear-gradient(150deg,rgba(47,141,116,.28),rgba(255,255,255,.03));
-  border:1px solid var(--glass-brd)}
+.feat-grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);
+  border:1px solid var(--hair);border-radius:22px;overflow:hidden;margin-top:clamp(1.8rem,3.4vw,2.6rem)}
+.feat-cell{position:relative;background:var(--cell-bg);padding:clamp(1.9rem,2.4vw,2.7rem);
+  overflow:hidden;transition:background .5s var(--ease)}
+.feat-cell::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(130% 110% at 100% 0,rgba(47,141,116,.16),transparent 55%);
+  opacity:0;transition:opacity .5s var(--ease)}
+.feat-cell:hover{background:var(--cell-bg-h)}
+.feat-cell:hover::before{opacity:1}
+.feat-num{position:absolute;inset-inline-end:1.4rem;top:1rem;font-family:var(--font-display);font-weight:500;
+  font-size:3.4rem;line-height:1;color:var(--jade-soft);opacity:.12;transition:opacity .5s var(--ease);pointer-events:none}
+.feat-cell:hover .feat-num{opacity:.32}
+.feat-top{display:flex;align-items:center;gap:.9rem;margin-bottom:.95rem;position:relative}
+.feat-cell .ic{flex:0 0 auto;width:48px;height:48px;border-radius:13px;display:grid;place-items:center;
+  color:var(--jade-soft);background:linear-gradient(150deg,rgba(47,141,116,.26),rgba(255,255,255,.02));
+  border:1px solid var(--glass-brd);transition:transform .5s var(--ease)}
+.feat-cell:hover .ic{transform:translateY(-3px)}
 .feat-cell .ic svg{width:23px;height:23px}
-.feat-cell h3{font-size:1.18rem;margin-bottom:.4rem;line-height:1.3}
-.feat-cell p{color:var(--silver-2);font-size:.95rem;font-weight:300}
+.feat-cell h3{font-size:1.2rem;line-height:1.3;position:relative}
+.feat-cell p{color:var(--silver-2);font-size:.95rem;font-weight:300;position:relative;margin-top:.15rem}
 .lang-ar .feat-cell p{font-weight:400}
 
 /* ============ EXPERIENCE (split) ============ */
@@ -427,7 +439,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 @media(max-width:980px){
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
-  .feat-grid2{grid-template-columns:1fr}
+  .feat-grid2{grid-template-columns:repeat(2,1fr)}
   .split{grid-template-columns:1fr;gap:2.5rem}
   .community .split-inner{order:2}
   .concept-motif{grid-template-columns:1fr}
@@ -441,6 +453,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   .hero-specbar{gap:.4rem 1rem}
   .hsb{flex:1 0 40%;text-align:center;align-items:center}
   .hsb+.hsb::before{display:none}
+  .feat-grid2{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr}
   .stat+.stat{border-inline-start:0;border-top:1px solid var(--hair);padding-top:2.5rem}
   .form-grid{grid-template-columns:1fr}
@@ -579,46 +592,34 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
     </div>
     <div class="feat-grid2">
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
-        <div>
-          <h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3>
-          <p data-ar="مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة." data-en="Your own entrance, elevator, parking, and identity — away from the crowd of shared buildings.">مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة.</p>
-        </div>
+        <span class="feat-num">٠١</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span><h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3></div>
+        <p data-ar="مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة." data-en="Your own entrance, elevator, parking, and identity — away from the crowd of shared buildings.">مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></span>
-        <div>
-          <h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3>
-          <p data-ar="في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات." data-en="In Al Khobar's Golden Belt, where the elite converge and deals are made.">في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات.</p>
-        </div>
+        <span class="feat-num">٠٢</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></span><h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3></div>
+        <p data-ar="في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات." data-en="In Al Khobar's Golden Belt, where the elite converge and deals are made.">في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></span>
-        <div>
-          <h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3>
-          <p data-ar="مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك." data-en="Open spaces with flexible partitioning that form around how you work and how your team grows.">مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك.</p>
-        </div>
+        <span class="feat-num">٠٣</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></span><h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3></div>
+        <p data-ar="مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك." data-en="Open spaces with flexible partitioning that form around how you work and how your team grows.">مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></span>
-        <div>
-          <h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3>
-          <p data-ar="معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات." data-en="Commercial showrooms, plazas with water fountains, and green spaces just steps away.">معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات.</p>
-        </div>
+        <span class="feat-num">٠٤</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></span><h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3></div>
+        <p data-ar="معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات." data-en="Commercial showrooms, plazas with water fountains, and green spaces just steps away.">معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
-        <div>
-          <h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3>
-          <p data-ar="واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة." data-en="Glass façades for natural light, basement parking, and advanced building systems and services.">واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة.</p>
-        </div>
+        <span class="feat-num">٠٥</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span><h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3></div>
+        <p data-ar="واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة." data-en="Glass façades for natural light, basement parking, and advanced building systems and services.">واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span>
-        <div>
-          <h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3>
-          <p data-ar="أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن." data-en="A rare asset in a rare location that appreciates with time.">أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن.</p>
-        </div>
+        <span class="feat-num">٠٦</span>
+        <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span><h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3></div>
+        <p data-ar="أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن." data-en="A rare asset in a rare location that appreciates with time.">أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن.</p>
       </article>
     </div>
   </div>
