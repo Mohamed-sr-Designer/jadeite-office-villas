@@ -34,18 +34,18 @@
   --font-display:"El Messiri",serif;
   --font-body:"Tajawal",sans-serif;
   /* themeable surfaces (dark defaults) */
-  --page-base:#00261e;
+  --page-base:#0a0d0c;
   --page-bg:
-    radial-gradient(1100px 800px at 80% -10%, rgba(47,141,116,.22), transparent 60%),
-    radial-gradient(900px 900px at 0% 100%, rgba(0,68,56,.5), transparent 60%),
-    linear-gradient(180deg,#00261e,#001a14 60%,#070b0a);
+    radial-gradient(1100px 820px at 82% -12%, rgba(20,94,76,.34), transparent 60%),
+    radial-gradient(950px 900px at -5% 102%, rgba(0,68,56,.24), transparent 62%),
+    linear-gradient(180deg,#0c100e,#080b0a 55%,#050706);
   --btn-fill:#f1efe8; --btn-ink:#070b0a; --btn-fill-h:#ffffff; --btn-glow:rgba(255,255,255,.4);
-  --footer-bg:rgba(0,20,15,.5);
+  --footer-bg:rgba(6,9,8,.6);
   --input-bg:rgba(255,255,255,.04); --input-bg-focus:rgba(255,255,255,.07);
-  --select-bg:#00261e;
-  --cm-bg:rgba(0,38,30,.5);
-  --modal-bg:linear-gradient(160deg,rgba(10,52,42,.97),rgba(0,28,22,.98));
-  --totop-bg:rgba(0,30,24,.7);
+  --select-bg:#0d100f;
+  --cm-bg:rgba(255,255,255,.03);
+  --modal-bg:linear-gradient(160deg,#12211c,#0a0d0c);
+  --totop-bg:rgba(12,15,13,.82);
   --cell-bg:rgba(255,255,255,.022); --cell-bg-h:rgba(255,255,255,.06);
   --grain:.035;
 }
@@ -173,8 +173,8 @@ section{position:relative;padding-block:clamp(3.25rem,6.5vh,5.5rem)}
 
 /* ============ NAV ============ */
 header{position:fixed;top:0;inset-inline:0;z-index:90;transition:.5s var(--ease);
-  background:linear-gradient(180deg,rgba(0,22,17,.6),rgba(0,22,17,0))}
-header.scrolled{background:rgba(0,28,22,.9);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--hair)}
+  background:linear-gradient(180deg,rgba(5,8,7,.6),rgba(5,8,7,0))}
+header.scrolled{background:rgba(7,10,9,.92);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--hair)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:1.1rem}
 header.scrolled .nav{padding-block:.7rem}
 .nav-logo img{height:42px;width:auto;transition:.4s var(--ease)}
@@ -202,7 +202,7 @@ header.scrolled .nav-logo img{height:36px}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* mobile menu */
-.m-menu{position:fixed;inset:0;z-index:80;background:rgba(0,26,20,.96);backdrop-filter:blur(20px);
+.m-menu{position:fixed;inset:0;z-index:80;background:rgba(7,10,9,.97);backdrop-filter:blur(20px);
   display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.8rem;
   opacity:0;visibility:hidden;transition:.5s var(--ease)}
 .m-menu.open{opacity:1;visibility:visible}
@@ -448,6 +448,21 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 .lm-name{display:flex;align-items:center;gap:.75rem;color:var(--bone-dim);font-size:1.02rem}
 .lm-name .dot{width:7px;height:7px;border-radius:50%;background:var(--jade-soft);flex:0 0 auto}
 .lm-time{color:var(--jade-soft);font-size:.92rem;white-space:nowrap;font-weight:500}
+.loc-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start;margin-top:clamp(1.6rem,3vw,2.4rem)}
+.loc-map{border-radius:20px;overflow:hidden;border:1px solid var(--glass-brd);box-shadow:0 18px 48px -36px rgba(0,0,0,.45)}
+.loc-map img{width:100%;display:block}
+
+/* master plan beside text (smaller) */
+#masterplan .plan-frame{margin-top:0}
+#masterplan .split-text .lead{margin-top:1.2rem}
+
+/* ---- visual reorder: Features after Community ---- */
+main#top{display:flex;flex-direction:column}
+#features{order:5}
+#location{order:6}
+.stats{order:7}
+#gallery{order:8}
+#contact{order:9}
 
 /* ============ MODAL ============ */
 .modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:1.2rem;
@@ -494,6 +509,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   .burger{display:flex}
   .feat-grid2{grid-template-columns:repeat(2,1fr)}
   .offer-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
+  .loc-grid{grid-template-columns:1fr;gap:2rem}
   .split{grid-template-columns:1fr;gap:2.5rem}
   .community .split-inner{order:2}
   .concept-motif{grid-template-columns:1fr}
@@ -728,11 +744,11 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 
 <!-- ============ MASTER PLAN ============ -->
 <section id="masterplan">
-  <div class="wrap">
-    <div class="sec-head reveal">
+  <div class="wrap split">
+    <div class="reveal split-text">
       <span class="eyebrow" data-ar="المخطط العام" data-en="Master Plan">المخطط العام</span>
-      <h2 class="h2" data-ar="رؤية تخطيطية متكاملة لوجهة أعمال رائدة." data-en="An integrated master plan for a leading business destination.">رؤية تخطيطية متكاملة لوجهة أعمال رائدة.</h2>
-      <p class="feat2-sub" data-ar="فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة." data-en="Standalone office villas, an office tower, and retail — arranged around a central green environment and lively plazas.">فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة.</p>
+      <h2 class="h2" style="margin:1.3rem 0" data-ar="رؤية تخطيطية متكاملة لوجهة أعمال رائدة." data-en="An integrated master plan for a leading business destination.">رؤية تخطيطية متكاملة لوجهة أعمال رائدة.</h2>
+      <p class="lead" data-ar="فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة." data-en="Standalone office villas, an office tower, and retail — arranged around a central green environment and lively plazas.">فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة.</p>
     </div>
     <div class="plan-frame reveal"><img src="assets/masterplan.jpg" alt="Jadeite master plan" loading="lazy" decoding="async" /></div>
   </div>
@@ -774,14 +790,15 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 
 <!-- ============ LOCATION ============ -->
 <section id="location">
-  <div class="wrap split">
-    <div class="reveal">
+  <div class="wrap">
+    <div class="sec-head reveal">
       <span class="eyebrow" data-ar="موقعك الاستراتيجي" data-en="Strategic Location">موقعك الاستراتيجي</span>
-      <h2 class="h2" style="margin:1.3rem 0" data-ar="في قلب الحزام الذهبي بالخبر." data-en="In the heart of Al Khobar's Golden Belt.">في قلب الحزام الذهبي بالخبر.</h2>
+      <h2 class="h2" data-ar="في قلب الحزام الذهبي بالخبر." data-en="In the heart of Al Khobar's Golden Belt.">في قلب الحزام الذهبي بالخبر.</h2>
       <p class="lead" data-ar="يقع جاديت في حي الحزام الذهبي بمدينة الخبر، حيث تتلاقى سهولة الوصول مع جاذبية الموقع — بتمركزٍ استراتيجي بين طريق صلاح الدين الأيوبي، وطريقَي الملك فهد والملك سعود بن عبدالعزيز، وقربٍ من أهم المعالم والخدمات." data-en="Jadeite sits in Al Khobar's Golden Belt, where easy access meets a prime address — strategically positioned between Salah Al-Din Al-Ayyubi Road and the King Fahd and King Saud bin Abdulaziz roads, close to key landmarks and services.">يقع جاديت في حي الحزام الذهبي بمدينة الخبر، حيث تتلاقى سهولة الوصول مع جاذبية الموقع — بتمركزٍ استراتيجي بين طريق صلاح الدين الأيوبي، وطريقَي الملك فهد والملك سعود بن عبدالعزيز، وقربٍ من أهم المعالم والخدمات.</p>
     </div>
-    <div class="reveal">
-      <ul class="lm-list">
+    <div class="loc-grid">
+      <div class="loc-map reveal"><img src="assets/map.jpg" alt="Jadeite location map — Al Khobar" loading="lazy" decoding="async" /></div>
+      <ul class="lm-list reveal">
         <li><span class="lm-name"><span class="dot"></span><span data-ar="الخبر مول" data-en="Al Khobar Mall">الخبر مول</span></span><span class="lm-time" data-ar="٤ دقائق" data-en="4 min">٤ دقائق</span></li>
         <li><span class="lm-name"><span class="dot"></span><span data-ar="مستشفى المواساة" data-en="Mouwasat Hospital">مستشفى المواساة</span></span><span class="lm-time" data-ar="٦ دقائق" data-en="6 min">٦ دقائق</span></li>
         <li><span class="lm-name"><span class="dot"></span><span data-ar="مجمع الأفنيوز" data-en="The Avenues">مجمع الأفنيوز</span></span><span class="lm-time" data-ar="٧ دقائق" data-en="7 min">٧ دقائق</span></li>
