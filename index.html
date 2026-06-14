@@ -406,6 +406,49 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1.8rem;border-top:1px solid var(--hair);flex-wrap:wrap}
 .foot-bottom p{font-size:.82rem;color:var(--silver)}
 
+/* ============ OFFERINGS ============ */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.offer-card{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--glass-brd);
+  border-radius:20px;overflow:hidden;transition:.5s var(--ease)}
+.offer-card:hover{transform:translateY(-5px);border-color:var(--jade-soft);background:var(--glass-2)}
+.offer-img{aspect-ratio:16/11;overflow:hidden;position:relative}
+.offer-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease)}
+.offer-card:hover .offer-img img{transform:scale(1.06)}
+.offer-img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,26,20,.5),transparent 55%)}
+.offer-body{padding:1.7rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.offer-kicker{font-family:var(--font-body);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--jade-soft)}
+.lang-ar .offer-kicker{letter-spacing:.05em;font-size:.8rem}
+.offer-body h3{font-size:1.42rem}
+.offer-body p{color:var(--silver-2);font-size:.95rem;font-weight:300;flex:1}
+.lang-ar .offer-body p{font-weight:400}
+.offer-meta{margin-top:.5rem;padding-top:.9rem;border-top:1px solid var(--hair);font-size:.9rem;color:var(--bone-dim)}
+
+/* ============ MASTER PLAN ============ */
+.plan-frame{border-radius:24px;overflow:hidden;border:1px solid var(--glass-brd);background:#f3f1ea;
+  box-shadow:0 18px 48px -36px rgba(0,0,0,.4);margin-top:clamp(1.4rem,3vw,2.4rem)}
+.plan-frame img{width:100%;display:block}
+
+/* ============ FLOOR PLANS (villa selector) ============ */
+.villa-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:clamp(1.4rem,3vw,2.2rem);justify-content:center}
+.villa-tab{min-width:48px;height:48px;padding:0 .6rem;border-radius:12px;border:1px solid var(--glass-brd);
+  background:var(--glass);color:var(--bone-dim);font-family:var(--font-display);font-size:1.1rem;
+  display:grid;place-items:center;transition:.35s var(--ease)}
+.villa-tab:hover{border-color:var(--jade-soft);color:var(--bone);transform:translateY(-2px)}
+.villa-tab.active{background:var(--btn-fill);color:var(--btn-ink);border-color:transparent}
+.villa-plan{margin-top:1.5rem;border-radius:20px;overflow:hidden;border:1px solid var(--glass-brd);
+  box-shadow:0 18px 48px -36px rgba(0,0,0,.45)}
+.villa-plan img{width:100%;display:block}
+.villa-cap{margin-top:1.1rem;text-align:center;color:var(--silver-2);font-size:1rem}
+.villa-cap b{color:var(--bone);font-weight:600;font-family:var(--font-display);font-size:1.15rem}
+
+/* ============ LOCATION / landmarks ============ */
+.lm-list{list-style:none;display:flex;flex-direction:column;margin-top:.5rem}
+.lm-list li{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 0;border-top:1px solid var(--hair)}
+.lm-list li:last-child{border-bottom:1px solid var(--hair)}
+.lm-name{display:flex;align-items:center;gap:.75rem;color:var(--bone-dim);font-size:1.02rem}
+.lm-name .dot{width:7px;height:7px;border-radius:50%;background:var(--jade-soft);flex:0 0 auto}
+.lm-time{color:var(--jade-soft);font-size:.92rem;white-space:nowrap;font-weight:500}
+
 /* ============ MODAL ============ */
 .modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:1.2rem;
   opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s var(--ease)}
@@ -450,6 +493,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   .nav-links,.nav-cta{display:none}
   .burger{display:flex}
   .feat-grid2{grid-template-columns:repeat(2,1fr)}
+  .offer-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
   .split{grid-template-columns:1fr;gap:2.5rem}
   .community .split-inner{order:2}
   .concept-motif{grid-template-columns:1fr}
@@ -496,9 +540,10 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
     <nav>
       <ul class="nav-links">
         <li><a href="#concept" data-ar="المشروع" data-en="The Project">المشروع</a></li>
-        <li><a href="#experience" data-ar="التجربة" data-en="The Experience">التجربة</a></li>
+        <li><a href="#offerings" data-ar="الخيارات" data-en="Offerings">الخيارات</a></li>
         <li><a href="#features" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</a></li>
-        <li><a href="#community" data-ar="المجتمع" data-en="The Community">المجتمع</a></li>
+        <li><a href="#floorplans" data-ar="الفلل" data-en="Villas">الفلل</a></li>
+        <li><a href="#location" data-ar="الموقع" data-en="Location">الموقع</a></li>
         <li><a href="#gallery" data-ar="المعرض" data-en="Gallery">المعرض</a></li>
       </ul>
     </nav>
@@ -517,9 +562,10 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 <!-- mobile menu -->
 <div class="m-menu" id="mMenu">
   <a href="#concept" data-ar="المشروع" data-en="The Project">المشروع</a>
-  <a href="#experience" data-ar="التجربة" data-en="The Experience">التجربة</a>
+  <a href="#offerings" data-ar="الخيارات" data-en="Offerings">الخيارات</a>
   <a href="#features" data-ar="لماذا جاديت" data-en="Why Jadeite">لماذا جاديت</a>
-  <a href="#community" data-ar="المجتمع" data-en="The Community">المجتمع</a>
+  <a href="#floorplans" data-ar="الفلل" data-en="Villas">الفلل</a>
+  <a href="#location" data-ar="الموقع" data-en="Location">الموقع</a>
   <a href="#gallery" data-ar="المعرض" data-en="Gallery">المعرض</a>
   <a href="#contact" data-open-modal class="btn btn-primary" data-ar="سجّل اهتمامك" data-en="Register Interest">سجّل اهتمامك</a>
 </div>
@@ -540,8 +586,8 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
     <div class="hero-specbar reveal">
       <div class="hsb"><span class="hsb-k" data-ar="الموقع" data-en="Location">الموقع</span><span class="hsb-v" data-ar="الخبر · الحزام الذهبي" data-en="Al Khobar · Golden Belt">الخبر · الحزام الذهبي</span></div>
       <div class="hsb"><span class="hsb-k" data-ar="عدد الفلل" data-en="Villas">عدد الفلل</span><span class="hsb-v" data-ar="١١ فيلا مستقلة" data-en="11 villas">١١ فيلا مستقلة</span></div>
-      <div class="hsb"><span class="hsb-k" data-ar="المساحة" data-en="Total area">المساحة</span><span class="hsb-v" data-ar="١٩٬٠٠٠ م²" data-en="19,000 m²">١٩٬٠٠٠ م²</span></div>
-      <div class="hsb"><span class="hsb-k" data-ar="الطوابق" data-en="Floors">الطوابق</span><span class="hsb-v" data-ar="٣ لكل فيلا" data-en="3 per villa">٣ لكل فيلا</span></div>
+      <div class="hsb"><span class="hsb-k" data-ar="وحدة مكتبية" data-en="Office units">وحدة مكتبية</span><span class="hsb-v" data-ar="٨٥ وحدة" data-en="85 units">٨٥ وحدة</span></div>
+      <div class="hsb"><span class="hsb-k" data-ar="معارض تجارية" data-en="Retail">معارض تجارية</span><span class="hsb-v" data-ar="٠٤ معارض" data-en="04 shops">٠٤ معارض</span></div>
     </div>
   </div>
 </section>
@@ -597,6 +643,46 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   </div>
 </section>
 
+<!-- ============ OFFERINGS ============ -->
+<section id="offerings">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center" data-ar="خيارات التملك والاستثمار" data-en="Ownership & Investment">خيارات التملك والاستثمار</span>
+      <h2 class="h2" style="margin:1.3rem auto;max-width:20ch" data-ar="ثلاثة مساراتٍ تليق بطموح أعمالك." data-en="Three paths worthy of your ambition.">ثلاثة مساراتٍ تليق بطموح أعمالك.</h2>
+      <p class="lead" style="margin-inline:auto" data-ar="يجمع جاديت بين الفلل المكتبية، والمساحات المكتبية ضمن البرج، والمحلات التجارية — لتختار ما يناسب عملك." data-en="Jadeite brings together office villas, tower offices, and retail shops — so you choose what fits your business.">يجمع جاديت بين الفلل المكتبية، والمساحات المكتبية ضمن البرج، والمحلات التجارية — لتختار ما يناسب عملك.</p>
+    </div>
+    <div class="offer-grid">
+      <article class="offer-card reveal">
+        <div class="offer-img"><img src="assets/experience.jpg" alt="Office villas" loading="lazy" decoding="async" /></div>
+        <div class="offer-body">
+          <span class="offer-kicker">Office Villas</span>
+          <h3 data-ar="فلل المكاتب" data-en="Office Villas">فلل المكاتب</h3>
+          <p data-ar="فلل مستقلة بمداخل ومواقف ولوحات تعريفية خاصة، تمنح إداراتك التنفيذية أعلى درجات الخصوصية والاستقلالية." data-en="Standalone villas with private entrances, parking, and signage — giving executive teams the highest privacy and independence.">فلل مستقلة بمداخل ومواقف ولوحات تعريفية خاصة، تمنح إداراتك التنفيذية أعلى درجات الخصوصية والاستقلالية.</p>
+          <div class="offer-meta" data-ar="١١ فيلا · من ٨٦٠ إلى ١٬٧٨١ م²" data-en="11 villas · 860–1,781 m²">١١ فيلا · من ٨٦٠ إلى ١٬٧٨١ م²</div>
+        </div>
+      </article>
+      <article class="offer-card reveal">
+        <div class="offer-img"><img src="assets/hero.jpg" alt="Tower offices" loading="lazy" decoding="async" /></div>
+        <div class="offer-body">
+          <span class="offer-kicker">Tower Offices</span>
+          <h3 data-ar="المساحات المكتبية" data-en="Tower Offices">المساحات المكتبية</h3>
+          <p data-ar="مساحات مرنة قابلة للتقسيم داخل برجٍ متكامل، بمداخل ومصاعد متعددة ومواقف مخصصة — مثالية للشركات الناشئة والمتوسطة." data-en="Flexible, divisible spaces in an integrated tower with multiple entrances, elevators, and dedicated parking — ideal for startups and SMEs.">مساحات مرنة قابلة للتقسيم داخل برجٍ متكامل، بمداخل ومصاعد متعددة ومواقف مخصصة — مثالية للشركات الناشئة والمتوسطة.</p>
+          <div class="offer-meta" data-ar="٨٥ وحدة مكتبية · من ٩٥٫٦٩ إلى ٤٢١٫٣٧ م²" data-en="85 units · 95.69–421.37 m²">٨٥ وحدة مكتبية · من ٩٥٫٦٩ إلى ٤٢١٫٣٧ م²</div>
+        </div>
+      </article>
+      <article class="offer-card reveal">
+        <div class="offer-img"><img src="assets/retail.jpg" alt="Retail shops" loading="lazy" decoding="async" /></div>
+        <div class="offer-body">
+          <span class="offer-kicker">Retail Shops</span>
+          <h3 data-ar="المحلات التجارية" data-en="Retail Shops">المحلات التجارية</h3>
+          <p data-ar="محلات بواجهات جذابة في الطابق الأرضي، تخدم الملاك والزوار ضمن موقعٍ حيوي — مثالية للمقاهي والمطاعم ومتاجر التجزئة." data-en="Ground-floor shops with striking façades serving owners and visitors in a vibrant setting — ideal for cafés, dining, and retail.">محلات بواجهات جذابة في الطابق الأرضي، تخدم الملاك والزوار ضمن موقعٍ حيوي — مثالية للمقاهي والمطاعم ومتاجر التجزئة.</p>
+          <div class="offer-meta" data-ar="٠٤ معارض تجارية · من ١٢١٫٣٤ إلى ٢٠٦٫٩٥ م²" data-en="04 showrooms · 121.34–206.95 m²">٠٤ معارض تجارية · من ١٢١٫٣٤ إلى ٢٠٦٫٩٥ م²</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FEATURES ============ -->
 <section id="features">
   <div class="wrap">
@@ -640,6 +726,32 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   </div>
 </section>
 
+<!-- ============ MASTER PLAN ============ -->
+<section id="masterplan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-ar="المخطط العام" data-en="Master Plan">المخطط العام</span>
+      <h2 class="h2" data-ar="رؤية تخطيطية متكاملة لوجهة أعمال رائدة." data-en="An integrated master plan for a leading business destination.">رؤية تخطيطية متكاملة لوجهة أعمال رائدة.</h2>
+      <p class="feat2-sub" data-ar="فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة." data-en="Standalone office villas, an office tower, and retail — arranged around a central green environment and lively plazas.">فللٌ مكتبية مستقلة، وبرجٌ مكتبي، ومحلاتٌ تجارية، تتوزّع حول بيئةٍ خضراء مركزية وساحاتٍ نابضة بالحياة.</p>
+    </div>
+    <div class="plan-frame reveal"><img src="assets/masterplan.jpg" alt="Jadeite master plan" loading="lazy" decoding="async" /></div>
+  </div>
+</section>
+
+<!-- ============ FLOOR PLANS ============ -->
+<section id="floorplans">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center" data-ar="مخططات الفلل" data-en="Villa Floor Plans">مخططات الفلل</span>
+      <h2 class="h2" style="margin:1.3rem auto;max-width:18ch" data-ar="اختر فيلّتك المكتبية." data-en="Choose your office villa.">اختر فيلّتك المكتبية.</h2>
+      <p class="lead" style="margin-inline:auto" data-ar="إحدى عشرة فيلا مستقلة، لكلٍّ منها ثلاثة طوابق (أرضي، أول، ثاني) ومساحتها الخاصة. استعرض مخطط كل فيلا." data-en="Eleven standalone villas, each with three floors (ground, first, second) and its own area. Browse each villa's plan.">إحدى عشرة فيلا مستقلة، لكلٍّ منها ثلاثة طوابق (أرضي، أول، ثاني) ومساحتها الخاصة. استعرض مخطط كل فيلا.</p>
+    </div>
+    <div class="villa-tabs reveal" id="villaTabs"></div>
+    <div class="villa-plan reveal"><img id="villaImg" src="assets/villa-01.jpg" alt="Villa 01 floor plan" loading="lazy" decoding="async" /></div>
+    <div class="villa-cap reveal"><span data-ar="الفيلا" data-en="Villa">الفيلا</span> <b id="villaNum">01</b> · <span data-ar="المساحة الإجمالية" data-en="Total area">المساحة الإجمالية</span> <b id="villaArea">1,001.60</b> <span data-ar="م²" data-en="m²">م²</span></div>
+  </div>
+</section>
+
 <!-- ============ COMMUNITY ============ -->
 <section id="community" class="community">
   <div class="wrap split">
@@ -660,13 +772,37 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   </div>
 </section>
 
+<!-- ============ LOCATION ============ -->
+<section id="location">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow" data-ar="موقعك الاستراتيجي" data-en="Strategic Location">موقعك الاستراتيجي</span>
+      <h2 class="h2" style="margin:1.3rem 0" data-ar="في قلب الحزام الذهبي بالخبر." data-en="In the heart of Al Khobar's Golden Belt.">في قلب الحزام الذهبي بالخبر.</h2>
+      <p class="lead" data-ar="يقع جاديت في حي الحزام الذهبي بمدينة الخبر، حيث تتلاقى سهولة الوصول مع جاذبية الموقع — بتمركزٍ استراتيجي بين طريق صلاح الدين الأيوبي، وطريقَي الملك فهد والملك سعود بن عبدالعزيز، وقربٍ من أهم المعالم والخدمات." data-en="Jadeite sits in Al Khobar's Golden Belt, where easy access meets a prime address — strategically positioned between Salah Al-Din Al-Ayyubi Road and the King Fahd and King Saud bin Abdulaziz roads, close to key landmarks and services.">يقع جاديت في حي الحزام الذهبي بمدينة الخبر، حيث تتلاقى سهولة الوصول مع جاذبية الموقع — بتمركزٍ استراتيجي بين طريق صلاح الدين الأيوبي، وطريقَي الملك فهد والملك سعود بن عبدالعزيز، وقربٍ من أهم المعالم والخدمات.</p>
+    </div>
+    <div class="reveal">
+      <ul class="lm-list">
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="الخبر مول" data-en="Al Khobar Mall">الخبر مول</span></span><span class="lm-time" data-ar="٤ دقائق" data-en="4 min">٤ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="مستشفى المواساة" data-en="Mouwasat Hospital">مستشفى المواساة</span></span><span class="lm-time" data-ar="٦ دقائق" data-en="6 min">٦ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="مجمع الأفنيوز" data-en="The Avenues">مجمع الأفنيوز</span></span><span class="lm-time" data-ar="٧ دقائق" data-en="7 min">٧ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="ملعب أرامكو" data-en="Aramco Stadium">ملعب أرامكو</span></span><span class="lm-time" data-ar="٩ دقائق" data-en="9 min">٩ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="كورنيش الخبر" data-en="Al Khobar Corniche">كورنيش الخبر</span></span><span class="lm-time" data-ar="١٠ دقائق" data-en="10 min">١٠ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="فندق موفنبيك" data-en="Mövenpick Hotel">فندق موفنبيك</span></span><span class="lm-time" data-ar="١٠ دقائق" data-en="10 min">١٠ دقائق</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="الظهران مول" data-en="Dhahran Mall">الظهران مول</span></span><span class="lm-time" data-ar="١٢ دقيقة" data-en="12 min">١٢ دقيقة</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="جامعة الإمام عبدالرحمن بن فيصل" data-en="Imam Abdulrahman University">جامعة الإمام عبدالرحمن بن فيصل</span></span><span class="lm-time" data-ar="١٧ دقيقة" data-en="17 min">١٧ دقيقة</span></li>
+        <li><span class="lm-name"><span class="dot"></span><span data-ar="مركز إثراء الثقافي" data-en="Ithra Cultural Center">مركز إثراء الثقافي</span></span><span class="lm-time" data-ar="٢١ دقيقة" data-en="21 min">٢١ دقيقة</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ STATS ============ -->
 <section class="stats">
   <div class="wrap stats-grid">
     <div class="stat reveal"><div class="num"><span data-count="11">0</span></div><div class="lab" data-ar="فيلا مكتبية" data-en="Office Villas">فيلا مكتبية</div></div>
-    <div class="stat reveal"><div class="num"><span data-count="19000">0</span><span class="u" data-ar=" م²" data-en=" m²"> م²</span></div><div class="lab" data-ar="المساحة الإجمالية" data-en="Total Area">المساحة الإجمالية</div></div>
+    <div class="stat reveal"><div class="num"><span data-count="85">0</span></div><div class="lab" data-ar="وحدة مكتبية" data-en="Office Units">وحدة مكتبية</div></div>
+    <div class="stat reveal"><div class="num"><span data-count="4" data-prefix="0">0</span></div><div class="lab" data-ar="معارض تجارية" data-en="Retail Shops">معارض تجارية</div></div>
     <div class="stat reveal"><div class="num"><span data-count="3">0</span></div><div class="lab" data-ar="طوابق لكل فيلا" data-en="Floors per Villa">طوابق لكل فيلا</div></div>
-    <div class="stat reveal"><div class="num"><span data-count="24">0</span><span class="u">/7</span></div><div class="lab" data-ar="أمن وصيانة" data-en="Security & Care">أمن وصيانة</div></div>
   </div>
 </section>
 
@@ -855,7 +991,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
         <h5 data-ar="تواصل" data-en="Contact">تواصل</h5>
         <ul>
           <li data-ar="الحزام الذهبي، الخبر، المملكة العربية السعودية" data-en="Golden Belt, Al Khobar, Kingdom of Saudi Arabia">الحزام الذهبي، الخبر، المملكة العربية السعودية</li>
-          <li><a href="tel:+966110000000" dir="ltr">+966 11 000 0000</a></li>
+          <li><a href="tel:920008670" dir="ltr">920008670</a></li>
           <li><a href="mailto:sales@jadeite.sa">sales@jadeite.sa</a></li>
         </ul>
       </div>
@@ -1010,6 +1146,30 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   var onScrollTop=function(){ toTop.classList.toggle('show', window.scrollY>520); };
   onScrollTop(); window.addEventListener('scroll',onScrollTop,{passive:true});
   toTop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  /* ---------- VILLA FLOOR-PLAN SELECTOR ---------- */
+  var villaAreas=['1,001.60','1,001.60','860.01','860.20','860.20','960.95','976.54','976.54','976.54','976.61','1,781.14'];
+  var vTabs=document.getElementById('villaTabs');
+  if(vTabs){
+    for(var vi=1;vi<=11;vi++){
+      var vb=document.createElement('button');
+      vb.className='villa-tab'+(vi===1?' active':'');
+      vb.type='button';
+      vb.textContent=('0'+vi).slice(-2);
+      vb.setAttribute('data-villa',vi);
+      vb.setAttribute('aria-label','Villa '+('0'+vi).slice(-2));
+      vTabs.appendChild(vb);
+    }
+    vTabs.addEventListener('click',function(e){
+      var btn=e.target.closest('.villa-tab'); if(!btn) return;
+      var n=parseInt(btn.getAttribute('data-villa'),10), nn=('0'+n).slice(-2);
+      vTabs.querySelectorAll('.villa-tab').forEach(function(t){t.classList.toggle('active',t===btn);});
+      var img=document.getElementById('villaImg');
+      img.src='assets/villa-'+nn+'.jpg'; img.alt='Villa '+nn+' floor plan';
+      document.getElementById('villaNum').textContent=nn;
+      document.getElementById('villaArea').textContent=villaAreas[n-1];
+    });
+  }
 })();
 </script>
 </body>
