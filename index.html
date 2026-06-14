@@ -47,6 +47,7 @@
   --modal-bg:linear-gradient(160deg,#12211c,#0a0d0c);
   --totop-bg:rgba(12,15,13,.82);
   --cell-bg:rgba(255,255,255,.022); --cell-bg-h:rgba(255,255,255,.06);
+  --card-bg:rgba(255,255,255,.05); --card-brd:rgba(255,255,255,.13); --card-shadow:0 28px 64px -40px rgba(0,0,0,.8);
   --grain:.035;
 }
 /* ---- LIGHT THEME (cream + deep emerald) ---- */
@@ -72,6 +73,7 @@
   --modal-bg:linear-gradient(160deg,#f6f2e9,#eee7da);
   --totop-bg:rgba(255,255,255,.82);
   --cell-bg:rgba(255,255,255,.5); --cell-bg-h:rgba(255,255,255,.85);
+  --card-bg:rgba(255,255,255,.6); --card-brd:rgba(7,42,33,.1); --card-shadow:0 20px 50px -38px rgba(40,55,45,.28);
   --grain:.02;
 }
 /* keep nav, hero, mobile menu, loader & stats-band dark in BOTH themes */
@@ -138,7 +140,19 @@ h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;letter
 
 /* ============ LAYOUT ============ */
 .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1.2rem,4vw,3rem)}
-section{position:relative;padding-block:clamp(3.25rem,6.5vh,5.5rem)}
+section{position:relative;padding-block:clamp(1.5rem,3vh,2.6rem);padding-inline:clamp(.8rem,3vw,1.8rem)}
+
+/* ---- section cards (distinct content blocks) ---- */
+main > section:not(#hero) > .wrap{
+  max-width:1240px;margin-inline:auto;
+  padding:clamp(2.2rem,4.5vw,3.6rem) clamp(1.4rem,3.5vw,3rem);
+  background:var(--card-bg);border:1px solid var(--card-brd);border-radius:26px;
+  box-shadow:var(--card-shadow);transition:background .5s var(--ease),border-color .5s var(--ease)}
+/* stats: drop full-width band, become a card like the rest */
+.stats{background:none;border-block:0}
+/* contact: let the section card be the container; strip the inner form-shell chrome */
+.contact .form-shell{background:none;border:0;box-shadow:none;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+.contact .form-shell::before{display:none}
 .btn{
   display:inline-flex;align-items:center;gap:.65em;
   padding:1.05em 2.1em;border-radius:100px;font-size:.86rem;font-weight:500;
@@ -830,8 +844,7 @@ main#top{display:flex;flex-direction:column}
       <span class="eyebrow" data-ar="المعرض" data-en="Gallery">المعرض</span>
       <h2 class="h2" data-ar="لمحاتٌ من جاديت." data-en="Glimpses of Jadeite.">لمحاتٌ من جاديت.</h2>
     </div>
-  </div>
-  <div class="gal-slider reveal">
+    <div class="gal-slider reveal">
     <div class="gal-track">
       <div class="gal-slide"><img src="assets/hero.jpg" alt="Jadeite glass tower" loading="lazy" decoding="async" /></div>
       <div class="gal-slide"><img src="assets/experience.jpg" alt="Jadeite office villa" loading="lazy" decoding="async" /></div>
@@ -848,6 +861,7 @@ main#top{display:flex;flex-direction:column}
       <div class="gal-slide" aria-hidden="true"><img src="assets/exterior.jpg" alt="" loading="lazy" decoding="async" /></div>
       <div class="gal-slide" aria-hidden="true"><img src="assets/community.jpg" alt="" loading="lazy" decoding="async" /></div>
       <div class="gal-slide" aria-hidden="true"><img src="assets/exterior2.jpg" alt="" loading="lazy" decoding="async" /></div>
+    </div>
     </div>
   </div>
 </section>
