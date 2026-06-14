@@ -74,8 +74,8 @@
   --cell-bg:rgba(255,255,255,.5); --cell-bg-h:rgba(255,255,255,.85);
   --grain:.02;
 }
-/* keep nav, hero, mobile menu & loader dark in BOTH themes */
-header, .hero, .m-menu, #loader{
+/* keep nav, hero, mobile menu, loader & stats-band dark in BOTH themes */
+header, .hero, .m-menu, #loader, .exp-stats-band{
   --bone:#f1efe8; --bone-dim:#cfd2cd; --silver:#8c9091; --silver-2:#b9bdbb;
   --jade:#2f8d74; --jade-soft:#79b6a5;
   --glass:rgba(255,255,255,.05); --glass-2:rgba(255,255,255,.08);
@@ -307,9 +307,19 @@ header.scrolled .nav-logo img{height:36px}
 .split-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
 .split-media:hover img{transform:scale(1.05)}
 .split-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(0,38,30,.35))}
-.exp-stats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap}
-.exp-stats .es .num{font-family:var(--font-display);font-size:2.4rem;color:var(--bone);line-height:1}
-.exp-stats .es .lab{font-size:.82rem;color:var(--silver-2);margin-top:.4rem;letter-spacing:.04em}
+.exp-stats-band{position:relative;margin-top:clamp(2rem,4vw,3.2rem);border-radius:24px;overflow:hidden;
+  border:1px solid var(--glass-brd);box-shadow:0 18px 48px -36px rgba(0,0,0,.45)}
+.exp-stats-band::before{content:"";position:absolute;inset:0;z-index:0;background:url("assets/interior.jpg") center/cover;transform:scale(1.02)}
+.exp-stats-band::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(115deg,rgba(0,22,17,.94),rgba(0,30,24,.86))}
+.exp-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;padding:clamp(1.5rem,3vw,2.4rem)}
+.es{background:rgba(255,255,255,.13);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.26);border-radius:16px;padding:1.7rem 1.3rem;text-align:center;
+  box-shadow:0 14px 40px -30px rgba(0,0,0,.6);transition:.4s var(--ease)}
+.es:hover{background:rgba(255,255,255,.16);border-color:var(--jade-soft);transform:translateY(-4px)}
+.es .num{font-family:var(--font-display);font-size:clamp(2.3rem,3.5vw,3rem);color:var(--bone);line-height:1;font-weight:500}
+.es .lab{font-size:.88rem;color:var(--bone-dim);margin-top:.55rem;letter-spacing:.03em}
+.lang-ar .es .lab{font-size:.95rem}
 
 #experience .split-media{aspect-ratio:4/3}
 /* ============ COMMUNITY ============ */
@@ -454,6 +464,7 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
   .hsb{flex:1 0 40%;text-align:center;align-items:center}
   .hsb+.hsb::before{display:none}
   .feat-grid2{grid-template-columns:1fr}
+  .exp-stats{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr}
   .stat+.stat{border-inline-start:0;border-top:1px solid var(--hair);padding-top:2.5rem}
   .form-grid{grid-template-columns:1fr}
@@ -565,19 +576,23 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
 
 <!-- ============ EXPERIENCE ============ -->
 <section id="experience">
-  <div class="wrap split">
-    <div class="reveal">
-      <span class="eyebrow" data-ar="رفاهية وعمل" data-en="Luxury & Work">رفاهية وعمل</span>
-      <h2 class="h2" style="margin:1.3rem 0" data-ar="بيئاتٌ ينمو فيها الإنجاز." data-en="Environments where achievement grows.">بيئاتٌ ينمو فيها الإنجاز.</h2>
-      <p class="lead" data-ar="بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان." data-en="Between walls that inspire and gardens that restore, each villa is shaped to give your team deeper focus and a finer presence. Here, the gravity of work meets the luxury of place.">بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان.</p>
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow" data-ar="رفاهية وعمل" data-en="Luxury & Work">رفاهية وعمل</span>
+        <h2 class="h2" style="margin:1.3rem 0" data-ar="بيئاتٌ ينمو فيها الإنجاز." data-en="Environments where achievement grows.">بيئاتٌ ينمو فيها الإنجاز.</h2>
+        <p class="lead" data-ar="بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان." data-en="Between walls that inspire and gardens that restore, each villa is shaped to give your team deeper focus and a finer presence. Here, the gravity of work meets the luxury of place.">بين جدرانٍ تُلهم وحدائق تُريح، صُمّمت كل فيلا لتمنح فريقك تركيزًا أعمق وحضورًا أرقى. هنا يلتقي وقار العمل برفاهية المكان.</p>
+      </div>
+      <div class="split-media reveal">
+        <img src="assets/experience.jpg" alt="Jadeite office villa exterior" loading="lazy" decoding="async" />
+      </div>
+    </div>
+    <div class="exp-stats-band reveal">
       <div class="exp-stats">
         <div class="es"><div class="num" data-count="100" data-suffix="%">0</div><div class="lab" data-ar="ملكية مستقلة لكل فيلا" data-en="Independent ownership">ملكية مستقلة لكل فيلا</div></div>
         <div class="es"><div class="num" data-count="3" data-suffix="">0</div><div class="lab" data-ar="طوابق لكل فيلا" data-en="Floors per villa">طوابق لكل فيلا</div></div>
-        <div class="es"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lab" data-ar="أمن وخدمة" data-en="Security & concierge">أمن وخدمة</div></div>
+        <div class="es"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lab" data-ar="أمن وخدمة على مدار الساعة" data-en="Round-the-clock security">أمن وخدمة على مدار الساعة</div></div>
       </div>
-    </div>
-    <div class="split-media reveal">
-      <img src="assets/experience.jpg" alt="Jadeite office villa exterior" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
@@ -592,32 +607,32 @@ footer{border-top:1px solid var(--hair);padding-block:clamp(3rem,6vw,5rem) 2rem;
     </div>
     <div class="feat-grid2">
       <article class="feat-cell reveal">
-        <span class="feat-num">٠١</span>
+        <span class="feat-num" data-ar="٠١" data-en="01">٠١</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span><h3 data-ar="خصوصية واستقلالية" data-en="Privacy & Independence">خصوصية واستقلالية</h3></div>
         <p data-ar="مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة." data-en="Your own entrance, elevator, parking, and identity — away from the crowd of shared buildings.">مدخل ومصعد ومواقف وهوية خاصة بك وحدك، بعيدًا عن زحام المباني المشتركة.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="feat-num">٠٢</span>
+        <span class="feat-num" data-ar="٠٢" data-en="02">٠٢</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg></span><h3 data-ar="عنوان مرموق" data-en="A Prestigious Address">عنوان مرموق</h3></div>
         <p data-ar="في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات." data-en="In Al Khobar's Golden Belt, where the elite converge and deals are made.">في الحزام الذهبي بالخبر، حيث تجتمع النخبة وتُصنع الصفقات.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="feat-num">٠٣</span>
+        <span class="feat-num" data-ar="٠٣" data-en="03">٠٣</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M9 21v-6h6v6"/></svg></span><h3 data-ar="مساحات تُفصّل لك" data-en="Bespoke Spaces">مساحات تُفصّل لك</h3></div>
         <p data-ar="مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك." data-en="Open spaces with flexible partitioning that form around how you work and how your team grows.">مساحات مفتوحة بتقسيمات مرنة تتشكّل حول طريقة عملك وطموح فريقك.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="feat-num">٠٤</span>
+        <span class="feat-num" data-ar="٠٤" data-en="04">٠٤</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M18 4a3 3 0 010 6"/></svg></span><h3 data-ar="مجتمع متكامل" data-en="An Integrated Community">مجتمع متكامل</h3></div>
         <p data-ar="معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات." data-en="Commercial showrooms, plazas with water fountains, and green spaces just steps away.">معارض تجارية، وساحات بنوافير مياه، ومساحات خضراء على بُعد خطوات.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="feat-num">٠٥</span>
+        <span class="feat-num" data-ar="٠٥" data-en="05">٠٥</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span><h3 data-ar="بنية ذكية" data-en="Smart Infrastructure">بنية ذكية</h3></div>
         <p data-ar="واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة." data-en="Glass façades for natural light, basement parking, and advanced building systems and services.">واجهات زجاجية للإضاءة الطبيعية، ومواقف قبو، وأنظمة وخدمات متقدمة.</p>
       </article>
       <article class="feat-cell reveal">
-        <span class="feat-num">٠٦</span>
+        <span class="feat-num" data-ar="٠٦" data-en="06">٠٦</span>
         <div class="feat-top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span><h3 data-ar="فرصة استثمارية" data-en="An Investment">فرصة استثمارية</h3></div>
         <p data-ar="أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن." data-en="A rare asset in a rare location that appreciates with time.">أصلٌ نادر في موقعٍ نادر، يرتقي بقيمته مع الزمن.</p>
       </article>
